@@ -35,7 +35,7 @@ router.route('/')
     // get all courses
     .get(coursesController.getAllCourses) // get: takes data from server to client
     // add new course: using request body
-    .post(/*middlewares-handlers*/verifyToken, allowedTo(userRoles.ADMIN, userRoles.MANAGER), validationSchema(), coursesController.addNewCourse); // post: takes data from client to server
+    .post(/*middlewares-handlers*/verifyToken, allowedTo(userRoles.ADMIN), validationSchema(), coursesController.addNewCourse); // post: takes data from client to server
 
 router.route('/:id')
     // get single course
@@ -43,7 +43,7 @@ router.route('/:id')
     // update a course:
     .patch(validationSchema(), coursesController.updateCourse)// put: replaces the object you want to update with the new object // patch: update only one value (for example title of js or price of c++)
     // delete a course:
-    .delete(verifyToken, allowedTo(userRoles.ADMIN, userRoles.MANAGER) , coursesController.deleteCourse); // delete: removes the object you want to delete
+    .delete(verifyToken, allowedTo(userRoles.ADMIN) , coursesController.deleteCourse); // delete: removes the object you want to delete
 
 
 module.exports = router;

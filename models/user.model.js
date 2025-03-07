@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
     address: { type: String },
     role: { type: String, enum: [userRoles.DONOR, userRoles.VOLUNTEER, userRoles.ADMIN], default: userRoles.DONOR, required: true },
     avatar: { type: String, default: 'uploads/profile.png' },
+    token: { type: String },
     createdAt: { type: Date, default: Date.now }
 });
 
