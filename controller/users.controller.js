@@ -25,7 +25,7 @@ const getAllUsers = asyncWrapper(
 
 const register = asyncWrapper(
     async(req,res,next) => {
-        const {firstName, lastName, email, password, role} = req.body;
+        const {firstName, lastName, email, password, phone, address, role} = req.body;
 
         // password hashing:
         const hashedPassword = await bcrypt.hash(password, 10); // hash(password, salt /*adding random string - to protect against rainbow table anmd brute-force attacks*/)
@@ -35,6 +35,8 @@ const register = asyncWrapper(
             lastName,
             email,
             password: hashedPassword,
+            phone,
+            address,
             role,
             avatar: req.file.filename
         });

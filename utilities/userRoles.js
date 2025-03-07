@@ -1,9 +1,9 @@
-const MANAGER = "MANAGER";
+const DONOR = "DONOR";
+const VOLUNTEER = "VOLUNTEER";
 const ADMIN = "ADMIN";
-const USER = "USER";
 
 module.exports = {
-    MANAGER,
-    ADMIN,
-    USER
+    DONOR,
+    VOLUNTEER,
+    ADMIN
 }
