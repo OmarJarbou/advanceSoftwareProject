@@ -3,6 +3,7 @@ const Orphanage = require("../models/orphanage.model.js");
 const appError = require("../utilities/appError.js");
 const httpStatusText = require("../utilities/httpStatusText.js");
 const {validationResult} = require('express-validator');
+const requestStatus = require("../utilities/requestStatus");
 
 //get all orphanages
 const getAllOrphanages = asyncWrapper(
@@ -46,12 +47,7 @@ const createOrphanage = asyncWrapper(
         }
 
         const { name, location, description, contact: {phone, email} } = req.body;
-        const adminIdHeader = req.headers['AdminID'] || req.headers['adminid'];
-        console.log(adminIdHeader);
-        if(!adminIdHeader) {
-            return res.status(401).json({ message: 'admin id is rquired' });
-        }
-        const adminId = adminIdHeader;
+        const userId = req.currentUser.id; // User requesting the orphanage
 
         const newOrphanage = new Orphanage({ 
             name: name, 
@@ -61,15 +57,47 @@ const createOrphanage = asyncWrapper(
                 phone: phone, 
                 email: email
             },
-            admin: adminId 
+            admin: userId, // The requesting user becomes the orphanage admin
+            status: requestStatus.PENDING
         });
         await newOrphanage.save();
-        res.status(201).json({ status: httpStatusText.SUCCESS, data: {orphanage: newOrphanage} });
+        res.status(201).json({ 
+            status: httpStatusText.SUCCESS, 
+            data: {orphanage: newOrphanage},
+            message: "Orphanage request submitted, pending approval."
+        });
     }
 );
+
+const approveOrphanage = asyncWrapper(
+    async (req, res, next) => {
+        const orphanageId = req.params.id;
+        const orphanage = await Orphanage.findById(orphanageId);
+
+        if (!orphanage) {
+            return next(appError.create("Orphanage not found", 404, httpStatusText.FAIL));
+        }
+
+        if (orphanage.status === requestStatus.APPROVED) {
+            return res.json({ status: httpStatusText.SUCCESS, message: "Orphanage is already approved." });
+        }
+
+        orphanage.status = requestStatus.APPROVED;
+        orphanage.verified = true;
+        await orphanage.save();
+
+        res.json({ 
+            status: httpStatusText.SUCCESS, 
+            message: "Orphanage approved successfully.", 
+            data: { orphanage } 
+        });
+    }
+);
+
 
 module.exports = {
     getAllOrphanages,
     getOrphanageById,
-    createOrphanage
+    createOrphanage,
+    approveOrphanage
 }

@@ -27,6 +27,12 @@ const register = asyncWrapper(
     async(req,res,next) => {
         const {firstName, lastName, email, password, phone, address, role} = req.body;
 
+        // Check if file exists
+        let avatarFilename = null;
+        if (req.file) {
+            avatarFilename = req.file.filename;
+        }
+
         // password hashing:
         const hashedPassword = await bcrypt.hash(password, 10); // hash(password, salt /*adding random string - to protect against rainbow table anmd brute-force attacks*/)
 
@@ -38,7 +44,7 @@ const register = asyncWrapper(
             phone,
             address,
             role,
-            avatar: req.file.filename
+            avatar: avatarFilename
         });
 
         // generate jwt token

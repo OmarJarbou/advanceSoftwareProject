@@ -7,13 +7,17 @@ const userRoles = require("../utilities/userRoles.js");
 
 router
   .route("/")
-  .post(verifyToken, allowedTo(userRoles.ADMIN), orphanageController.createOrphanage) // Only App Admin can create orphanage
+  .post(verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), orphanageController.createOrphanage) // Only Orphanage Admin can create orphanage
   .get(orphanageController.getAllOrphanages); // Public
 
 router
   .route("/:id")
   .get(orphanageController.getOrphanageById);
-//   .patch(verifyToken, allowedTo(userRoles.ADMIN), orphanageController.updateOrphanage) // Only App Admin
-//   .delete(verifyToken, allowedTo(userRoles.ADMIN), orphanageController.deleteOrphanage); // Only App Admin
+//   .patch(verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), orphanageController.updateOrphanage) // Only Orphanage Admin
+//   .delete(verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), orphanageController.deleteOrphanage); // Only Orphanage Admin
+
+router
+  .route("/:id/approve")
+  .patch(verifyToken, allowedTo(userRoles.ADMIN), orphanageController.approveOrphanage); // Only App Admin can approve
 
 module.exports = router;

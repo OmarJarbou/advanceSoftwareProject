@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const requestStatus = require("../utilities/requestStatus");
 
 const OrphanageSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -10,6 +11,8 @@ const OrphanageSchema = new mongoose.Schema({
   },
   admin: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true, unique: true }, // Orphanage Admin
   orphans: [{ type: mongoose.Schema.Types.ObjectId, ref: "Orphan" }], // List of orphans in this orphanage
+  status: { type: String, enum: [requestStatus.PENDING, requestStatus.APPROVED, requestStatus.REJECTED], default: "pending" }, // Approval status
+  verified: { type: Boolean, default: false }, // Will be updated by the App Admin
   createdAt: { type: Date, default: Date.now }
 });
 
