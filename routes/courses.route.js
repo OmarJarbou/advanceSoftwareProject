@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router(); // mini app (instead of app)
 
-const coursesController = require('../controller/courses.controller.js');
+const coursesController = require('../controllers/courses.controller.js');
 
 const {validationSchema} = require('../middlewares/validationSchema.js');
 const verifyToken = require('../middlewares/verifyToken.js');

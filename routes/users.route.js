@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const usersController = require('../controller/users.controller.js');
+const usersController = require('../controllers/users.controller.js');
 const verifyToken = require('../middlewares/verifyToken.js');
 const appError = require('../utilities/appError.js');
 const httpStatusText = require('../utilities/httpStatusText.js');

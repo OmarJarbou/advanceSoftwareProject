@@ -22,11 +22,16 @@ app.use(express.json()); // tells express to handle json body comes to us
 
 const coursesRouter = require('./routes/courses.route.js');
 const usersRouter = require('./routes/users.route.js');
+const orphanageRouter = require("./routes/orphanages.route.js");
+// const orphansRouter = require("./routes/orphans.route.js");
 
 // use router as middleware
 // middleware1
 app.use('/api/courses', coursesRouter); // any request comes on '/' it will go and handle it in coursesRouter
 app.use('/api/users', usersRouter);
+app.use("/api/orphanages", orphanageRouter);
+// app.use("/api/orphans", orphansRouter);
+
 
 // wild card:
 // middleware2 - global middleware for not found root 

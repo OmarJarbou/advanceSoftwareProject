@@ -77,7 +77,7 @@ const login = asyncWrapper(
         if(user && matchedPassword){
             // logged in successfully
             const token = await generateJWT({id: user._id, email: user.email, role: user.role});
-            return res.json({ status: httpStatusText.SUCCESS, data: {token}});
+            return res.json({ status: httpStatusText.SUCCESS, data: {id: user._id, token}});
         }
         else{
             const error = appError.create('invalid email or password', 404, httpStatusText.ERROR);
