@@ -18,6 +18,7 @@ router
 
 router
   .route("/:id/approve")
-  .patch(verifyToken, allowedTo(userRoles.ADMIN), orphanageController.approveOrphanage); // Only App Admin can approve
+  .patch(verifyToken, allowedTo(userRoles.ADMIN), orphanageController.approveOrphanage) // Only App Admin can approve
+  .patch(verifyToken, allowedTo(userRoles.ADMIN), orphanageController.rejectOrphanage); // Only App Admin can reject
 
 module.exports = router;

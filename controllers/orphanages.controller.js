@@ -5,7 +5,7 @@ const httpStatusText = require("../utilities/httpStatusText.js");
 const {validationResult} = require('express-validator');
 const requestStatus = require("../utilities/requestStatus");
 
-//get all orphanages
+//get all orphanages: ok
 const getAllOrphanages = asyncWrapper(
     async (req, res) => {
         const query = req.query;
@@ -22,7 +22,7 @@ const getAllOrphanages = asyncWrapper(
     }
 );
 
-//get orphanage by id
+//get orphanage by id: ok
 const getOrphanageById = asyncWrapper(
     async (req, res, next) => {
         const id = req.params.id;
@@ -37,7 +37,7 @@ const getOrphanageById = asyncWrapper(
     }
 );
 
-// create new orphanage
+// create new orphanage: ok
 const createOrphanage = asyncWrapper(
     async (req, res, next) => {
         const errors = validationResult(req);
@@ -69,6 +69,7 @@ const createOrphanage = asyncWrapper(
     }
 );
 
+// approve orphanage: ok
 const approveOrphanage = asyncWrapper(
     async (req, res, next) => {
         const orphanageId = req.params.id;
@@ -93,7 +94,34 @@ const approveOrphanage = asyncWrapper(
         });
     }
 );
-// Update orphanage
+
+// reject orphanage: ok
+const rejectOrphanage = asyncWrapper(
+    async (req, res, next) => {
+        const orphanageId = req.params.id;
+        const orphanage = await Orphanage.findById(orphanageId);
+
+        if (!orphanage) {
+            return next(appError.create("Orphanage not found", 404, httpStatusText.FAIL));
+        }
+
+        if (orphanage.status === requestStatus.REJECTED) {
+            return res.json({ status: httpStatusText.SUCCESS, message: "Orphanage is already rejected." });
+        }
+
+        orphanage.status = requestStatus.REJECTED;
+        orphanage.verified = true;
+        await orphanage.save();
+
+        res.json({ 
+            status: httpStatusText.SUCCESS, 
+            message: "Orphanage rejected successfully.", 
+            data: { orphanage } 
+        });
+    }
+);
+
+// Update orphanage: ok
 const updateOrphanage = asyncWrapper(async (req, res, next) => {
     const orphanageId = req.params.id;
     const updates = req.body;
@@ -111,7 +139,7 @@ const updateOrphanage = asyncWrapper(async (req, res, next) => {
     });
 });
 
-// Delete orphanage
+// Delete orphanage: ok
 const deleteOrphanage = asyncWrapper(async (req, res, next) => {
     const orphanageId = req.params.id;
     
@@ -133,6 +161,7 @@ module.exports = {
     getOrphanageById,
     createOrphanage,
     approveOrphanage,
+    rejectOrphanage,
     updateOrphanage,
     deleteOrphanage
 }

@@ -1,11 +1,13 @@
+const mongoose = require("mongoose");
 const Orphan = require("../models/orphan.model.js");
 const Orphanage = require("../models/orphanage.model.js");
 const appError = require("../utilities/appError.js");
 const httpStatusText = require("../utilities/httpStatusText.js");
 const { validationResult } = require("express-validator");
 const asyncWrapper = require('../middlewares/asyncWrapper.js');
+const requestStatus = require("../utilities/requestStatus");
 
-// Get all orphans with pagination
+// Get all orphans with pagination: ok
 const getAllOrphans = asyncWrapper(
     async (req, res) => {
         const query = req.query;
@@ -24,7 +26,7 @@ const getAllOrphans = asyncWrapper(
     }
 );
 
-// Get orphan by ID
+// Get orphan by ID: ok
 const getOrphanById = asyncWrapper(
     async (req, res, next) => {
         const id = req.params.id;
@@ -41,7 +43,7 @@ const getOrphanById = asyncWrapper(
     }
 );
 
-
+// Create orphan: ok - {photos}
 const createOrphan = asyncWrapper(
     async (req, res, next) => {
         const errors = validationResult(req);
@@ -53,9 +55,14 @@ const createOrphan = asyncWrapper(
         const { name, age, gender, educationStatus, healthCondition, orphanage, photos } = req.body;
         const orphanageAdmin=req.currentUser.id;
 
-        const orphanageDoc = await Orphanage.findById(orphanage);
+        const orphanageDoc = await Orphanage.findById(new mongoose.Types.ObjectId(orphanage));
         if (!orphanageDoc) {
             const error = appError.create("Orphanage not found", 400, httpStatusText.FAIL);
+            return next(error);
+        }
+
+        if (orphanageDoc.status !== requestStatus.APPROVED){
+            const error = appError.create("Orphanage not approved", 400, httpStatusText.FAIL);
             return next(error);
         }
 
@@ -74,8 +81,10 @@ const createOrphan = asyncWrapper(
             orphanageAdmin:orphanageAdmin,
             photos:photos
         });
-
         await newOrphan.save();
+        orphanageDoc.orphans.push(newOrphan);
+        await orphanageDoc.save();
+
         res.status(201).json({
             status: httpStatusText.SUCCESS,
             data: { orphan: newOrphan },
@@ -84,32 +93,30 @@ const createOrphan = asyncWrapper(
     }
 );
 
-// Approve orphan (this could be based on some approval logic, e.g., admin verifies orphan info)
-const approveOrphan = asyncWrapper(
-    async (req, res, next) => {
-        const orphanId = req.params.id;
-        const orphan = await Orphan.findById(orphanId);
-
-        if (!orphan) {
-            return next(appError.create("Orphan not found", 404, httpStatusText.FAIL));
-        }
-
-        // Assuming you want an approval flag here
-        orphan.approved = true; // Add an "approved" field if necessary
-        await orphan.save();
-
-        res.json({
-            status: httpStatusText.SUCCESS,
-            message: "Orphan approved successfully.",
-            data: { orphan }
-        });
-    }
-);
-
 // Update orphan details
 const updateOrphan = asyncWrapper(async (req, res, next) => {
     const orphanId = req.params.id;
     const updates = req.body;
+    const orphanageAdmin = req.currentUser.id;
+
+    const oldOrphan = await Orphan.findById(orphanId);
+
+    const orphanageDoc = await Orphanage.findById(oldOrphan.orphanage);
+    
+    if (!orphanageDoc) {
+        const error = appError.create("Orphanage not found", 400, httpStatusText.FAIL);
+        return next(error);
+    }
+
+    if (orphanageDoc.status !== requestStatus.APPROVED){
+        const error = appError.create("Orphanage not approved", 400, httpStatusText.FAIL);
+        return next(error);
+    }
+
+    if (!orphanageDoc.admin.equals(orphanageAdmin)) {
+        const error = appError.create("Orphanage Admin mismatch", 400, httpStatusText.FAIL);
+        return next(error);
+    }
 
     const orphan = await Orphan.findByIdAndUpdate(orphanId, updates, { new: true });
 
@@ -144,7 +151,6 @@ module.exports = {
     getAllOrphans,
     getOrphanById,
     createOrphan,
-    approveOrphan,
     updateOrphan,
     deleteOrphan
 };
