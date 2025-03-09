@@ -6,8 +6,8 @@ const OrphanSchema = new mongoose.Schema({
   gender: { type: String, enum: ["Male", "Female"], required: true },
   educationStatus: { type: String },
   healthCondition: { type: String },
-  orphanage: { type: mongoose.Schema.Types.ObjectId, ref: "Orphanage", required: true }, // Reference to orphanage
-  orphanageAdmin: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // Assigned orphanage admin
+ orphanage: { type: mongoose.Schema.Types.ObjectId, ref: "Orphanage", required: true }, // Reference to orphanage
+ orphanageAdmin: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // Assigned orphanage admin
   sponsors: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // List of sponsors
   photos: [{ type: String }],
   createdAt: { type: Date, default: Date.now }
