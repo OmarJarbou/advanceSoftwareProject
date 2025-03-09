@@ -93,11 +93,46 @@ const approveOrphanage = asyncWrapper(
         });
     }
 );
+// Update orphanage
+const updateOrphanage = asyncWrapper(async (req, res, next) => {
+    const orphanageId = req.params.id;
+    const updates = req.body;
+    
+    const orphanage = await Orphanage.findByIdAndUpdate(orphanageId, updates, { new: true });
+    
+    if (!orphanage) {
+        return next(appError.create("Orphanage not found", 404, httpStatusText.FAIL));
+    }
+
+    res.json({
+        status: httpStatusText.SUCCESS,
+        message: "Orphanage updated successfully.",
+        data: { orphanage }
+    });
+});
+
+// Delete orphanage
+const deleteOrphanage = asyncWrapper(async (req, res, next) => {
+    const orphanageId = req.params.id;
+    
+    const orphanage = await Orphanage.findByIdAndDelete(orphanageId);
+    
+    if (!orphanage) {
+        return next(appError.create("Orphanage not found", 404, httpStatusText.FAIL));
+    }
+
+    res.json({
+        status: httpStatusText.SUCCESS,
+        message: "Orphanage deleted successfully."
+    });
+});
 
 
 module.exports = {
     getAllOrphanages,
     getOrphanageById,
     createOrphanage,
-    approveOrphanage
+    approveOrphanage,
+    updateOrphanage,
+    deleteOrphanage
 }
