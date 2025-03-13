@@ -41,23 +41,7 @@ const getAllOrphansOfOrphanage = asyncWrapper(
         const skip = (page - 1) * limit;
 
         const orphanageId = req.params.id;
-        const orphanageAdmin = req.currentUser.id;
         const orphanageDoc = await Orphanage.findById(new mongoose.Types.ObjectId(orphanageId));
-    
-        if (!orphanageDoc) {
-            const error = appError.create("Orphanage not found", 400, httpStatusText.FAIL);
-            return next(error);
-        }
-
-        if (orphanageDoc.status !== requestStatus.APPROVED){
-            const error = appError.create("Orphanage not approved", 400, httpStatusText.FAIL);
-            return next(error);
-        }
-
-        if (!orphanageDoc.admin.equals(orphanageAdmin)) {
-            const error = appError.create("Orphanage Admin mismatch", 400, httpStatusText.FAIL);
-            return next(error);
-        }
 
         // find orphan by it orphanage id:
         const orphans = await Orphan.find({orphanage: orphanageDoc._id}, { __v: false })
@@ -78,7 +62,7 @@ const getAllOrphansOfOrphanage = asyncWrapper(
 // Get orphan by ID: ok
 const getOrphanById = asyncWrapper(
     async (req, res, next) => {
-        const id = req.params.id;
+        const id = req.params.orphanid;
         const orphan = await Orphan.findById(new mongoose.Types.ObjectId(id))
             .populate("orphanage", "name location")
             .populate("orphanageAdmin", "name email");
@@ -95,24 +79,8 @@ const getOrphanById = asyncWrapper(
 // Get orphan by ID in orphanage: ok
 const getOrphanByIdInOrphanage = asyncWrapper(
     async (req, res, next) => {
-        const orphanageAdmin = req.currentUser.id;
         const orphanageId = req.params.orphanageid;
         const orphanageDoc = await Orphanage.findById(new mongoose.Types.ObjectId(orphanageId));
-    
-        if (!orphanageDoc) {
-            const error = appError.create("Orphanage not found", 400, httpStatusText.FAIL);
-            return next(error);
-        }
-
-        if (orphanageDoc.status !== requestStatus.APPROVED){
-            const error = appError.create("Orphanage not approved", 400, httpStatusText.FAIL);
-            return next(error);
-        }
-
-        if (!orphanageDoc.admin.equals(orphanageAdmin)) {
-            const error = appError.create("Orphanage Admin mismatch", 400, httpStatusText.FAIL);
-            return next(error);
-        }
 
         const id = req.params.id;
         const orphan = await Orphan.find({orphanage: orphanageDoc._id, _id: id})
@@ -139,22 +107,7 @@ const createOrphan = asyncWrapper(
 
         const { name, age, gender, educationStatus, healthCondition, orphanage, photos } = req.body;
         const orphanageAdmin=req.currentUser.id;
-
         const orphanageDoc = await Orphanage.findById(new mongoose.Types.ObjectId(orphanage));
-        if (!orphanageDoc) {
-            const error = appError.create("Orphanage not found", 400, httpStatusText.FAIL);
-            return next(error);
-        }
-
-        if (orphanageDoc.status !== requestStatus.APPROVED){
-            const error = appError.create("Orphanage not approved", 400, httpStatusText.FAIL);
-            return next(error);
-        }
-
-        if (!orphanageDoc.admin.equals(orphanageAdmin)) {
-            const error = appError.create("Orphanage Admin mismatch", 400, httpStatusText.FAIL);
-            return next(error);
-        }
 
         const newOrphan = new Orphan({
             name:name,
@@ -180,28 +133,8 @@ const createOrphan = asyncWrapper(
 
 // Update orphan details
 const updateOrphan = asyncWrapper(async (req, res, next) => {
-    const orphanId = req.params.id;
+    const orphanId = req.params.orphanid;
     const updates = req.body;
-    const orphanageAdmin = req.currentUser.id;
-
-    const oldOrphan = await Orphan.findById(orphanId);
-
-    const orphanageDoc = await Orphanage.findById(oldOrphan.orphanage);
-    
-    if (!orphanageDoc) {
-        const error = appError.create("Orphanage not found", 400, httpStatusText.FAIL);
-        return next(error);
-    }
-
-    if (orphanageDoc.status !== requestStatus.APPROVED){
-        const error = appError.create("Orphanage not approved", 400, httpStatusText.FAIL);
-        return next(error);
-    }
-
-    if (!orphanageDoc.admin.equals(orphanageAdmin)) {
-        const error = appError.create("Orphanage Admin mismatch", 400, httpStatusText.FAIL);
-        return next(error);
-    }
 
     const orphan = await Orphan.findByIdAndUpdate(orphanId, updates, { new: true });
 
@@ -218,8 +151,7 @@ const updateOrphan = asyncWrapper(async (req, res, next) => {
 
 // Delete orphan
 const deleteOrphan = asyncWrapper(async (req, res, next) => {
-    const orphanId = req.params.id;
-    const orphanageAdmin = req.currentUser.id;
+    const orphanId = req.params.orphanid;
 
     const oldOrphan = await Orphan.findById(orphanId);
 
@@ -228,30 +160,15 @@ const deleteOrphan = asyncWrapper(async (req, res, next) => {
     }
     
     const orphanageDoc = await Orphanage.findById(oldOrphan.orphanage);
-    
-    if (!orphanageDoc) {
-        const error = appError.create("Orphanage not found", 400, httpStatusText.FAIL);
-        return next(error);
-    }
 
-    if (orphanageDoc.status !== requestStatus.APPROVED){
-        const error = appError.create("Orphanage not approved", 400, httpStatusText.FAIL);
-        return next(error);
-    }
+    // Delete the orphan
+    await Orphan.findByIdAndDelete(orphanId);
 
-    if (!orphanageDoc.admin.equals(orphanageAdmin)) {
-        const error = appError.create("Orphanage Admin mismatch", 400, httpStatusText.FAIL);
-        return next(error);
-    }
-
-        // Delete the orphan
-        await Orphan.findByIdAndDelete(orphanId);
-
-        // Remove orphan from orphanage's orphans array
-        orphanageDoc.orphans = orphanageDoc.orphans.filter(id => !id.equals(orphanId));
+    // Remove orphan from orphanage's orphans array
+    orphanageDoc.orphans = orphanageDoc.orphans.filter(id => !id.equals(orphanId));
         
-        // Save the updated orphanage document
-        await orphanageDoc.save();
+    // Save the updated orphanage document
+    await orphanageDoc.save();
 
     res.json({
         status: httpStatusText.SUCCESS,
