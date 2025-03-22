@@ -16,7 +16,14 @@ mongoose.connect(url).then(() => {
 });
 
 app.use(cors());
-app.use(express.json()); // tells express to handle json body comes to us
+app.use((req, res, next) => {
+    if (req.originalUrl === "/webhooks/stripe") {
+      next(); // Skip JSON parsing for Stripe webhook
+    } else {
+      express.json()(req, res, next);// tells express to handle json body comes to us
+    }
+});
+   
 //or:
 // app.use(bodyParser.json()); // you have to install the middleware from internet first
 
@@ -24,6 +31,9 @@ const coursesRouter = require('./routes/courses.route.js');
 const usersRouter = require('./routes/users.route.js');
 const orphanageRouter = require("./routes/orphanages.route.js");
 const orphansRouter = require("./routes/orphans.route.js");
+const sponsorshipsRouter = require("./routes/sponsorships.route.js");
+const webhookRoutes = require("./routes/webhook.route.js");
+
 
 // use router as middleware
 // middleware1
@@ -31,6 +41,8 @@ app.use('/api/courses', coursesRouter); // any request comes on '/' it will go a
 app.use('/api/users', usersRouter);
 app.use("/api/orphanages", orphanageRouter);
  app.use("/api/orphans", orphansRouter);
+ app.use('/api/sponsorships', sponsorshipsRouter);
+ app.use("/webhooks", webhookRoutes);
 
 
 // wild card:
