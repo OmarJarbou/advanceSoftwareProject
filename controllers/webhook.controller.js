@@ -46,15 +46,44 @@ const handleWebhook = async (req, res) => {
 
             case "customer.subscription.deleted": {
                 const canceledSubscription = event.data.object;
-                const updated = await Sponsorship.findOneAndUpdate(
-                    { subscriptionId: canceledSubscription.id },
-                    { status: sponsorshipStatus.CANCELED }
-                );
-                if (!updated) {
+                console.log("🔹 Subscription Deleted Event:", canceledSubscription);
+            
+                // Find the sponsorship record
+                const sponsorship = await Sponsorship.findOne({ subscriptionId: canceledSubscription.id });
+            
+                if (!sponsorship) {
                     console.warn(`⚠️ No matching sponsorship found for subscription ID: ${canceledSubscription.id}`);
+                    break;
                 }
+            
+                // Check if today's date is after the planned endDate
+                const today = new Date();
+                const endDate = new Date(sponsorship.endDate);
+            
+                if (today >= endDate) {
+                    sponsorship.status = sponsorshipStatus.COMPLETED;
+                    console.log("✅ Sponsorship marked as COMPLETED:", sponsorship);
+                } else {
+                    sponsorship.status = sponsorshipStatus.CANCELED;
+                    console.log("❌ Sponsorship marked as CANCELED before end date:", sponsorship);
+                }
+            
+                await sponsorship.save();
                 break;
             }
+            
+
+            // case "customer.subscription.deleted": {
+            //     const canceledSubscription = event.data.object;
+            //     const updated = await Sponsorship.findOneAndUpdate(
+            //         { subscriptionId: canceledSubscription.id },
+            //         { status: sponsorshipStatus.CANCELED }
+            //     );
+            //     if (!updated) {
+            //         console.warn(`⚠️ No matching sponsorship found for subscription ID: ${canceledSubscription.id}`);
+            //     }
+            //     break;
+            // }
 
             default:
                 console.log(`ℹ️ Unhandled event type: ${event.type}`);

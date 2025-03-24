@@ -9,7 +9,7 @@ const Sponsor = require("../models/user.model.js");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // Step 1: Create a Setup Intent & Generate Checkout URL
-router.post("/setup-payment", verifyToken, async (req, res) => {
+router.post("/setup-payment", verifyToken , allowedTo(userRoles.SPONSOR), async (req, res) => {
     try {
         console.log("setup");
         
@@ -28,12 +28,12 @@ router.post("/setup-payment", verifyToken, async (req, res) => {
         //If the sponsor does not have a Stripe Customer ID, create one
         if (!sponsor.stripeCustomerId) {
             const customer = await stripe.customers.create({
-            email: sponsorExists.email,
-            name: sponsorExists.name,
+            email: sponsor.email,
+            name: sponsor.name,
             });
 
-            sponsorExists.stripeCustomerId = customer.id;
-            await sponsorExists.save();
+            sponsor.stripeCustomerId = customer.id;
+            await sponsor.save();
         }
 
         // Create a Setup Intent (for saving payment method)
@@ -52,7 +52,7 @@ router.post("/setup-payment", verifyToken, async (req, res) => {
     }
 });
 
-router.post("/attach-payment", verifyToken, async (req, res) => {
+router.post("/attach-payment", verifyToken, allowedTo(userRoles.SPONSOR), async (req, res) => {
     try {
         const sponsorId = req.currentUser.id; // Get sponsor ID
 
