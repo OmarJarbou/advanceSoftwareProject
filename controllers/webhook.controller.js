@@ -46,7 +46,7 @@ const handleWebhook = async (req, res) => {
 
             case "customer.subscription.deleted": {
                 const canceledSubscription = event.data.object;
-                console.log("🔹 Subscription Deleted Event:", canceledSubscription);
+                console.log("🔹 Subscription Deleted Event:", canceledSubscription.id);
             
                 // Find the sponsorship record
                 const sponsorship = await Sponsorship.findOne({ subscriptionId: canceledSubscription.id });
