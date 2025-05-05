@@ -32,12 +32,13 @@ const usersRouter = require('./routes/users.route.js');
 const orphanageRouter = require("./routes/orphanages.route.js");
 const orphansRouter = require("./routes/orphans.route.js");
 const sponsorshipsRouter = require("./routes/sponsorships.route.js");
-require("./routes/webhook.route.js");
+const handleWebhook = require("./routes/webhook.route.js");
 require("./routes/sponsorshipCompletionJob.route.js");
 
 
 // use router as middleware
 // middleware1
+app.use("/webhooks", handleWebhook);
 app.use('/api/courses', coursesRouter); // any request comes on '/' it will go and handle it in coursesRouter
 app.use('/api/users', usersRouter);
 app.use("/api/orphanages", orphanageRouter);

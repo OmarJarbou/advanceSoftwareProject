@@ -1,4 +1,5 @@
 const Sponsorship = require("../models/sponsorship.model.js");
+const Orphan = require("../models/orphan.model.js");
 const sponsorshipStatus = require("../utilities/sponsorshipStatus.js");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -28,6 +29,12 @@ const handleWebhook = async (req, res) => {
                     console.warn(`⚠️ No matching sponsorship found for subscription ID: ${successInvoice.subscription}`);
                 } else {
                     console.log("✅ Sponsorship updated to ACTIVE:", updated);
+
+                    // Add sponsor to orphan's sponsors array
+                    await Orphan.findByIdAndUpdate(
+                        updated.orphan,
+                        { $addToSet: { sponsors: updated.sponsor } } // ensures no duplicates
+                    );
                 }
                 break;
             }
@@ -69,6 +76,12 @@ const handleWebhook = async (req, res) => {
                 }
             
                 await sponsorship.save();
+
+                // Remove sponsor from orphan's sponsors array
+                await Orphan.findByIdAndUpdate(
+                    sponsorship.orphan,
+                    { $pull: { sponsors: sponsorship.sponsor } }
+                );
                 break;
             }
             
