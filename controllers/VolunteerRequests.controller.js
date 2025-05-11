@@ -1,4 +1,4 @@
-const VolunteerRequest = require("../models/volunteerRequest.model.js");
+const VolunteerRequest = require("../models/VolunteerRequest.model.js");
 const Orphanage = require("../models/orphanage.model.js");
 const appError = require("../utilities/appError.js");
 const httpStatusText = require("../utilities/httpStatusText.js");
@@ -77,6 +77,7 @@ const updateVolunteerRequest = asyncWrapper(async (req, res, next) => {
     const updatedRequest = await VolunteerRequest.findByIdAndUpdate(id, updates, {
         new: true, // return the updated document
         runValidators: true
+
     });
 
     if (!updatedRequest) {
