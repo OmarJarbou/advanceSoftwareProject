@@ -33,7 +33,11 @@ const orphanageRouter = require("./routes/orphanages.route.js");
 const orphansRouter = require("./routes/orphans.route.js");
 const sponsorshipsRouter = require("./routes/sponsorships.route.js");
 const handleWebhook = require("./routes/webhook.route.js");
+const volunteerRequestsRouter = require("./routes/VolunteerRequests.route.js");
+
+// const volunteerApplicationsRoutes = require("./routes/VolunteerApplications.route");
 require("./routes/sponsorshipCompletionJob.route.js");
+
 
 
 // use router as middleware
@@ -44,7 +48,8 @@ app.use('/api/users', usersRouter);
 app.use("/api/orphanages", orphanageRouter);
 app.use("/api/orphans", orphansRouter);
 app.use('/api/sponsorships', sponsorshipsRouter);
-
+// app.use("/api/volunteer-applications", volunteerApplicationsRoutes);
+app.use("/api/volunteerRequests", volunteerRequestsRouter);
 
 // wild card:
 // middleware2 - global middleware for not found root 
