@@ -17,6 +17,10 @@ router
 .route("/:id")
 .get(controller.getVolunteerRequestById)
 .delete(verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), controller.deleteVolunteerRequest)
-  .patch(verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), controller.updateVolunteerRequest);
+.patch(verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), controller.updateVolunteerRequest);
 
+router
+  .route("/orphanage/:orphanageId")
+  .get(controller.getVolunteerRequestsByOrphanageId);
+  
 module.exports = router;

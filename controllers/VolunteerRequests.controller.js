@@ -54,6 +54,26 @@ const getVolunteerRequestById = asyncWrapper(async (req, res, next) => {
         data: { request }
     });
 });
+// Get volunteer requests by orphanage ID
+const getVolunteerRequestsByOrphanageId = asyncWrapper(async (req, res, next) => {
+    const { orphanageId } = req.params;
+
+    // Find the orphanage by the ID
+    const orphanage = await Orphanage.findById(orphanageId);
+    if (!orphanage) {
+        return next(appError.create("Orphanage not found", 404, httpStatusText.FAIL));
+    }
+
+    // Fetch volunteer requests associated with the orphanage
+    const requests = await VolunteerRequest.find({ orphanage: orphanageId })
+        .populate("orphanage", "name location");
+
+    res.json({
+        status: httpStatusText.SUCCESS,
+        data: { requests }
+    });
+});
+
 // Delete volunteer request by ID
 const deleteVolunteerRequest = asyncWrapper(async (req, res, next) => {
     const { id } = req.params;
@@ -99,6 +119,7 @@ module.exports = {
     createVolunteerRequest,
     getAllVolunteerRequests,
     getVolunteerRequestById,
+    getVolunteerRequestsByOrphanageId,
     deleteVolunteerRequest,
     deleteVolunteerRequest,
     updateVolunteerRequest
