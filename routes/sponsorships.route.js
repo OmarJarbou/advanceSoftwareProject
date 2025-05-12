@@ -9,7 +9,7 @@ const Sponsor = require("../models/user.model.js");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // Step 1: Create a Setup Intent & Generate Checkout URL
-router.post("/setup-payment", verifyToken , allowedTo(userRoles.SPONSOR), async (req, res) => {
+router.post("/setup-payment", verifyToken , allowedTo(userRoles.SPONSOR,userRoles.DONOR), async (req, res) => {
     try {
         console.log("setup");
         
@@ -52,7 +52,7 @@ router.post("/setup-payment", verifyToken , allowedTo(userRoles.SPONSOR), async 
     }
 });
 
-router.post("/attach-payment", verifyToken, allowedTo(userRoles.SPONSOR), async (req, res) => {
+router.post("/attach-payment", verifyToken, allowedTo(userRoles.SPONSOR,userRoles.DONOR), async (req, res) => {
     try {
         const sponsorId = req.currentUser.id; // Get sponsor ID
 
