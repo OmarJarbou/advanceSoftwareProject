@@ -6,6 +6,7 @@ const VolunteerRequestSchema = new mongoose.Schema({
     requiredSkills: { type: String },
     status: { type: String, enum: ["Open", "Closed"], default: "Open" },
     createdAt: { type: Date, default: Date.now }
+    
   });
   
 module.exports = mongoose.model("VolunteerRequest", VolunteerRequestSchema);
