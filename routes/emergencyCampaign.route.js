@@ -16,4 +16,14 @@ router
     .route("/:id")
     .get(campaignController.getCampaignById);
 
+router
+    .route("/:id/donate")
+    .post(verifyToken, allowedTo(userRoles.DONOR), campaignController.donateToCampaign);
+
+router
+  .route("/:id/donations")
+  .get(verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN, userRoles.ADMIN), checkOrphanage, campaignController.getCampaignDonations);
+
+router.get("/:id/summary", verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN, userRoles.ADMIN), checkOrphanage, campaignController.getCampaignSummary);
+
 module.exports = router;

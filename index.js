@@ -37,7 +37,8 @@ const volunteerRequestsRouter = require("./routes/VolunteerRequests.route.js");
 const campaignRoutes = require("./routes/emergencyCampaign.route.js");
 
 // const volunteerApplicationsRoutes = require("./routes/VolunteerApplications.route");
-require("./routes/sponsorshipCompletionJob.route.js");
+require("./jobs/sponsorshipCompletionJob.js");
+require("./jobs/campaignExpiryJob.js");
 
 
 
