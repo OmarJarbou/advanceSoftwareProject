@@ -1,22 +1,65 @@
 const express = require("express");
 const router = express.Router();
-const volunteerController = require("../controllers/VolunteerApplications.controller.js");
-const verifyToken = require("../middlewares/verifyToken.js");
-const allowedTo = require("../middlewares/allowedTo.js");
-const userRoles = require("../utilities/userRoles.js");
 
-router.post("/apply/:requestId", verifyToken, allowedTo(userRoles.VOLUNTEER), volunteerController.applyToVolunteerRequest);
-  router.get("/my-applications", verifyToken, allowedTo(userRoles.VOLUNTEER), volunteerController.getMyApplications);
-  router.get("/:applicationId", verifyToken, allowedTo(userRoles.VOLUNTEER), volunteerController.getApplicationById);
-  router.delete("/cancel/:applicationId", verifyToken, allowedTo(userRoles.VOLUNTEER), volunteerController.cancelApplication);
+const verifyToken = require("../middlewares/verifyToken");
+const allowedTo = require("../middlewares/allowedTo");
+const userRoles = require("../utilities/userRoles");
 
-// // Orphanage admin: view all applications for their orphanage
- router.get("/orphanage/my-application", verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), volunteerController.getApplicationsForMyOrphanage);
+const controller = require("../controllers/VolunteerApplications.controller.js");
 
-// // Orphanage admin: view applications for a specific request
-// router.get("/request/:requestId", verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), volunteerController.getApplicationsByRequest);
+// 👤 Only VOLUNTEER
 
-// // Orphanage admin: accept/reject application
-// router.patch("/:applicationId/accept", verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), volunteerController.acceptApplication);
-// router.patch("/:applicationId/reject", verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), volunteerController.rejectApplication);
-module.exports = router; 
+// تقديم طلب تطوع لطلب معين
+router.post(
+  "/apply/:requestId",
+  verifyToken,
+  allowedTo(userRoles.VOLUNTEER),
+  controller.applyToVolunteerRequest
+);
+
+// عرض كل طلبات المتطوع الحالي
+router.get(
+  "/my-applications",
+  verifyToken,
+  allowedTo(userRoles.VOLUNTEER),
+  controller.getMyApplications
+);
+
+
+router.get(
+  "/orphanages",
+  verifyToken,
+  allowedTo(userRoles.VOLUNTEER),
+  controller.getAllApprovedOrphanages
+);
+
+// عرض كل الطلبات المفتوحة
+router.get(
+  "/requests",
+  verifyToken,
+  allowedTo(userRoles.VOLUNTEER),
+  controller.getAllOpenRequests
+);
+
+// عرض أنواع الخدمات التطوعية
+router.get(
+  "/service-types",
+  verifyToken,
+  allowedTo(userRoles.VOLUNTEER),
+  controller.getServiceTypes
+);
+router.get(
+  "/volunteer-requests/orphanage/:orphanageId",
+  verifyToken,
+  allowedTo(userRoles.VOLUNTEER),
+  controller.getVolunteerRequestsByOrphanageId
+);
+router.delete(
+  "/:applicationId",
+  verifyToken,
+  allowedTo(userRoles.VOLUNTEER),
+  controller.deleteVolunteerApplication
+);
+
+
+module.exports = router;

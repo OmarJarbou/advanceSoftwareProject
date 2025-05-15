@@ -33,8 +33,10 @@ const orphanageRouter = require("./routes/orphanages.route.js");
 const orphansRouter = require("./routes/orphans.route.js");
 const sponsorshipsRouter = require("./routes/sponsorships.route.js");
 const handleWebhook = require("./routes/webhook.route.js");
-const volunteerRequestsRouter = require("./routes/VolunteerRequests.route.js");
 const campaignRoutes = require("./routes/emergencyCampaign.route.js");
+const volunteerApplicationsRoutes = require("./routes/volunteerApplications.route.js");
+const orphanageVolunteerRequestsRoutes = require("./routes/orphanageVolunteerRequests.route.js");
+const orphanageApplicationsRoutes= require("./routes/orphanageApplications.route.js");
 
 require("./routes/sponsorshipCompletionJob.route.js");
 
@@ -48,9 +50,15 @@ app.use('/api/users', usersRouter);
 app.use("/api/orphanages", orphanageRouter);
 app.use("/api/orphans", orphansRouter);
 app.use('/api/sponsorships', sponsorshipsRouter);
-app.use("/api/volunteerRequests", volunteerRequestsRouter);
-app.use("/api/volunteer-applications", volunteerApplicationsRoutes); 
+ 
 app.use("/api/campaigns", campaignRoutes);
+
+app.use("/api/orphanage/volunteer-requests", orphanageVolunteerRequestsRoutes);
+
+//(volunteer + orphanage admin)
+app.use("/api/volunteer/applications", volunteerApplicationsRoutes);
+app.use("/api/orphanage/applications", orphanageApplicationsRoutes);
+
 
 // wild card:
 // middleware2 - global middleware for not found root 
