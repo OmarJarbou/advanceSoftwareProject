@@ -7,6 +7,7 @@ const appError = require("../utilities/appError.js");
 const httpStatusText = require("../utilities/httpStatusText.js");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
+
 const createBooksDonation = asyncWrapper(async (req, res, next) => {
   const { books, orphanage } = req.body;
   const donor = req.currentUser.id;
@@ -34,6 +35,119 @@ const createBooksDonation = asyncWrapper(async (req, res, next) => {
   });
 });
 
+//////// creat midical aid material 
+
+const createMidicalMaterial = asyncWrapper(async (req, res, next) => {
+  const { material, orphanage } = req.body;
+  const donor = req.currentUser.id;
+  
+  if (!material || !donor) {
+    return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
+  }
+
+  const donation = new Donation({
+    donor,
+    category: "Medical Aid",
+    donationType: "Material",
+    material,
+    orphanage,
+    status: "On Arrive",
+    transactionId: "TEMP"
+  });
+   await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
+  await donation.save();
+
+  res.status(201).json({
+    status: httpStatusText.SUCCESS,
+    message: "Medical Aid Material donation created successfully",
+    data: { donation }
+  });
+});
+
+
+/////// creat Education material 
+const createEducationMaterial = asyncWrapper(async (req, res, next) => {
+  const {material, orphanage } = req.body;
+  const donor = req.currentUser.id;
+  
+  if (!material || !donor) {
+    return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
+  }
+
+  const donation = new Donation({
+    donor,
+    category: "Education Support",
+    donationType: "Material",
+    material,
+    orphanage,
+    status: "On Arrive",
+    transactionId: "TEMP"
+  });
+   await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
+  await donation.save();
+
+  res.status(201).json({
+    status: httpStatusText.SUCCESS,
+    message: "Education Support Material donation created successfully",
+    data: { donation }
+  });
+});
+
+/////// creat General Food 
+const createGeneralFood = asyncWrapper(async (req, res, next) => {
+  const {food, orphanage } = req.body;
+  const donor = req.currentUser.id;
+  
+  if (!food || !donor) {
+    return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
+  }
+
+  const donation = new Donation({
+    donor,
+    category: "General Fund",
+    donationType: "Food",
+    food,
+    orphanage,
+    status: "On Arrive",
+    transactionId: "TEMP"
+  });
+   await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
+  await donation.save();
+
+  res.status(201).json({
+    status: httpStatusText.SUCCESS,
+    message: "General Fund Food donation created successfully",
+    data: { donation }
+  });
+});
+
+/////// creat General Clothes 
+const createGeneralClothes = asyncWrapper(async (req, res, next) => {
+  const {clothes, orphanage } = req.body;
+  const donor = req.currentUser.id;
+  
+  if (!clothes || !donor) {
+    return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
+  }
+
+  const donation = new Donation({
+    donor,
+    category: "General Fund",
+    donationType: "Clothes",
+    clothes,
+    orphanage,
+    status: "On Arrive",
+    transactionId: "TEMP"
+  });
+   await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
+  await donation.save();
+
+  res.status(201).json({
+    status: httpStatusText.SUCCESS,
+    message: "General Fund Clothes donation created successfully",
+    data: { donation }
+  });
+});
 
 
 
@@ -41,7 +155,7 @@ const createDonationEducattionFinancial = asyncWrapper(async (req, res, next) =>
 
    const { amount, orphanage} = req.body;
   const donor = req.currentUser.id;
-
+  const category="Education Support";
   // Basic validation
   if (!donor || !amount) {
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
@@ -97,6 +211,130 @@ const createDonationEducattionFinancial = asyncWrapper(async (req, res, next) =>
   });
 });
 
+/////general-financial 
+const createDonationGeneralFinancial = asyncWrapper(async (req, res, next) => {
+
+   const { amount, orphanage} = req.body;
+  const donor = req.currentUser.id;
+  const category="General Fund";
+  // Basic validation
+  if (!donor || !amount) {
+    return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
+  }
+
+  // Create donation in DB based on the URL parameters
+  const donation = new Donation({
+    donor,
+    category: "General Fund",  
+    donationType: "Financial",
+    amount,
+    orphanage,
+    status: "Pending",
+    transactionId: "TEMP"  // Later updated with real transaction ID from payment gateway
+  });
+
+
+  // Create Stripe Checkout session
+  const session = await stripe.checkout.sessions.create({
+    
+    payment_method_types: ["card"],
+    mode: "payment",
+    line_items: [
+      {
+        price_data: {
+          currency: "usd", // or dynamic based on user
+          product_data: {
+            name: `Donation - ${category}`,
+          },
+          unit_amount: amount * 100,
+        },
+        quantity: 1,
+      },
+    ],
+    metadata: {
+      donationId: donation._id.toString(),
+    },
+    success_url: `${process.env.DOMAIN}/success`,
+    cancel_url: `${process.env.DOMAIN}/cancel`,
+  });
+  await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
+  // Update transaction ID temporarily with Stripe session ID
+  donation.transactionId = session.payment_intent || session.id;
+  await donation.save();
+
+  res.status(201).json({
+    status: httpStatusText.SUCCESS,
+    message: "Donation session created successfully",
+    data: {
+      donationId: donation._id,
+      checkoutUrl: session.url,
+    },
+  });
+});
+
+
+/////general-financial 
+const createDonationMidicalFinancial = asyncWrapper(async (req, res, next) => {
+
+   const { amount, orphanage} = req.body;
+  const donor = req.currentUser.id;
+  const category="Medical Aid";
+  // Basic validation
+  if (!donor || !amount) {
+    return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
+  }
+
+  // Create donation in DB based on the URL parameters
+  const donation = new Donation({
+    donor,
+    category: "Medical Aid",  
+    donationType: "Financial",
+    amount,
+    orphanage,
+    status: "Pending",
+    transactionId: "TEMP"  // Later updated with real transaction ID from payment gateway
+  });
+
+
+  // Create Stripe Checkout session
+  const session = await stripe.checkout.sessions.create({
+    
+    payment_method_types: ["card"],
+    mode: "payment",
+    line_items: [
+      {
+        price_data: {
+          currency: "usd", // or dynamic based on user
+          product_data: {
+            name: `Donation - ${category}`,
+          },
+          unit_amount: amount * 100,
+        },
+        quantity: 1,
+      },
+    ],
+    metadata: {
+      donationId: donation._id.toString(),
+    },
+    success_url: `${process.env.DOMAIN}/success`,
+    cancel_url: `${process.env.DOMAIN}/cancel`,
+  });
+  await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
+  // Update transaction ID temporarily with Stripe session ID
+  donation.transactionId = session.payment_intent || session.id;
+  await donation.save();
+
+  res.status(201).json({
+    status: httpStatusText.SUCCESS,
+    message: "Donation session created successfully",
+    data: {
+      donationId: donation._id,
+      checkoutUrl: session.url,
+    },
+  });
+});
+
+
 //////get all donations
 const getAllDonations = asyncWrapper(async (req, res, next) => {
   const donations = await Donation.find();  
@@ -122,26 +360,6 @@ const getDonationsByOrphanage = asyncWrapper(async (req, res, next) => {
   return res.json({ status: httpStatusText.SUCCESS, data: { donations } });
 });
 
-// Get donations for the logged-in donor
-// const getDonationsByDonor = asyncWrapper(async (req, res, next) => {
-//   console.log("Current user:", req.currentUser);
-
-//   const donor = req.currentUser.id; // Get the current logged-in user (donor)
-
-//   //Find donations associated with the donor
-//   const donations = await Donation.find({ donor: donor });
-
-//   if (!donations || donations.length === 0) {
-//     return next(appError.create("No donations found for this donor", 404, httpStatusText.FAIL));
-//   }
-
-//   return res.json({
-//     status: httpStatusText.SUCCESS,
-//     message: "Donations retrieved successfully",
-//     data: { donations },
-//   });
-// });
-// Get donations for the logged-in donor
 const getDonationDonor = asyncWrapper(async (req, res, next) => {
   const donor = req.currentUser.id; // Get the current logged-in user (donor)
 
@@ -179,6 +397,8 @@ const getDonationById = asyncWrapper(async (req, res, next) => {
 
 
 
+
+
 module.exports = {
   createDonationEducattionFinancial,
   getAllDonations,
@@ -186,4 +406,11 @@ module.exports = {
   getDonationDonor,
   getDonationById,
   createBooksDonation,
+  createDonationGeneralFinancial,
+  createDonationMidicalFinancial,
+  createMidicalMaterial,
+  createEducationMaterial,
+  createGeneralFood,
+  createGeneralClothes,
+ 
 };
