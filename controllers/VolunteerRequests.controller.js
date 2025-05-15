@@ -1,4 +1,4 @@
-const VolunteerRequest = require("../models/VolunteerRequest.model.js");
+const VolunteerRequest = require("../models/volunteerRequest.model.js");
 const Orphanage = require("../models/orphanage.model.js");
 const appError = require("../utilities/appError.js");
 const httpStatusText = require("../utilities/httpStatusText.js");

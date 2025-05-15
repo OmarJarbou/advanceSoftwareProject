@@ -24,7 +24,7 @@ const connectDB = async () => {
     }
 };
 
-// Schedule the job to run every day at midnight
+// Schedule the job to run every hour
 cron.schedule("0 * * * *", async () => {
     console.log("🔄 Running sponsorship completion job...");
 

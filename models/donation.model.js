@@ -21,7 +21,7 @@ const DonationSchema = new mongoose.Schema({
   donor: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   category: {
     type: String,
-    enum: ["General Fund", "Education Support", "Medical Aid"],
+    enum: ["General Fund", "Education Support", "Medical Aid", "Emergency Relief"],
     required: true
   },
   donationType: {
@@ -51,6 +51,7 @@ const DonationSchema = new mongoose.Schema({
     type: { type: String },
     quantity: { type: Number }
   }],
+  campaign: { type: mongoose.Schema.Types.ObjectId, ref: "EmergencyCampaign", default: null, required: false }
 });
 
 module.exports = mongoose.model("Donation", DonationSchema);

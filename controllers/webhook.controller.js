@@ -2,6 +2,8 @@ const Sponsorship = require("../models/sponsorship.model.js");
 const Orphan = require("../models/orphan.model.js");
 const sponsorshipStatus = require("../utilities/sponsorshipStatus.js");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const EmergencyCampaign = require("../models/emergencyCampaign.model.js");
+const Donation = require("../models/donation.model.js");
 
 const handleWebhook = async (req, res) => {
     let event;
@@ -36,6 +38,58 @@ const handleWebhook = async (req, res) => {
                         { $addToSet: { sponsors: updated.sponsor } } // ensures no duplicates
                     );
                 }
+                break;
+            }
+
+            case "checkout.session.completed": {
+                const session = event.data.object;
+
+                // Safety: Only act if it's a donation
+                const donationId = session.metadata?.donationId;
+                console.log(donationId);
+
+                if (!donationId) {
+                    console.warn("⚠️ No donation metadata found in checkout session.");
+                    break;
+                }
+
+                const donation = await Donation.findById(donationId);
+
+                if (!donation) {
+                    console.warn(`⚠️ Donation not found for ID ${donationId}`);
+                    break;
+                }
+
+                // Avoid double updates
+                if (donation.status === "Completed") {
+                    console.log(`ℹ️ Donation ${donationId} already marked as completed.`);
+                    break;
+                }
+
+                donation.status = "Completed";
+                await donation.save();
+
+                // Update campaign currentAmount
+                if (donation.campaign) {
+                    const campaign = await EmergencyCampaign.findById(donation.campaign);
+                    if (!campaign) {
+                    console.warn(`⚠️ Campaign not found for ID ${donation.campaign}`);
+                    break;
+                    }
+
+                    // Update current amount
+                    campaign.raisedAmount += donation.amount;
+
+                    // Mark as completed if target reached
+                    if (campaign.raisedAmount >= campaign.targetAmount) {
+                    campaign.status = "Completed";
+                    console.log(`🎉 Campaign ${campaign._id} reached its target and is now completed.`);
+                    }
+
+                    await campaign.save();
+                }
+
+                console.log(`✅ Donation ${donationId} marked as completed.`);
                 break;
             }
 
