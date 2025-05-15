@@ -49,6 +49,15 @@ const createOrphanage = asyncWrapper(
         const { name, location, description, contact: {phone, email} } = req.body;
         const userId = req.currentUser.id; // User requesting the orphanage
 
+        // Check if the orphanage admin already has orphanage
+        const existingOrphanage = await Orphanage.findOne({
+            admin: userId,
+            status: { $in: [requestStatus.PENDING, requestStatus.APPROVED] }
+        });
+        if (existingOrphanage) {
+            return next(appError.create("You already have an orphanage request pending or approved.", 400, httpStatusText.FAIL));
+        }
+
         const newOrphanage = new Orphanage({ 
             name: name, 
             location: location, 
