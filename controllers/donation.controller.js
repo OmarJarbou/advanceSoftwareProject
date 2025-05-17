@@ -6,6 +6,7 @@ const asyncWrapper = require("../middlewares/asyncWrapper.js");
 const appError = require("../utilities/appError.js");
 const httpStatusText = require("../utilities/httpStatusText.js");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const userRoles = require('../utilities/userRoles');
 
 
 const createBooksDonation = asyncWrapper(async (req, res, next) => {
@@ -350,8 +351,7 @@ const getAllDonations = asyncWrapper(async (req, res, next) => {
 //////////////get donation by ID 
 const getDonationsByOrphanage = asyncWrapper(async (req, res, next) => {
   const { orphanageid } = req.params; 
-
-  const donations = await Donation.find({ orphanage: orphanageid });
+    const donations = await Donation.find({ orphanage: orphanageid });
 
   if (!donations || donations.length === 0) {
     return next(appError.create("No donations found for this orphanage", 404, httpStatusText.FAIL));

@@ -15,6 +15,7 @@ const OrphanageSchema = new mongoose.Schema({
   verified: { type: Boolean, default: false }, // Will be updated by the App Admin
   donations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Donation" }], // List of donations for this orphanage (optional)
   createdAt: { type: Date, default: Date.now }
+  
 });
 
 module.exports = mongoose.model("Orphanage", OrphanageSchema);

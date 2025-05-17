@@ -13,7 +13,8 @@ const UserSchema = new mongoose.Schema({
     avatar: { type: String, default: 'uploads/profile.png' },
     token: { type: String },
     stripeCustomerId: { type: String }, // for sponsors
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    driverStatus:{type: String, enum: ["Busy","Available"], default: "Available"}
 });
 
 module.exports = mongoose.model("User", UserSchema);

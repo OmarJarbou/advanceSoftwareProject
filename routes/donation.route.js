@@ -29,17 +29,18 @@ router.post( "/genaral-fund/food",verifyToken,allowedTo( userRoles.DONOR),donati
 router.post( "/genaral-fund/clothes",verifyToken,allowedTo( userRoles.DONOR),donationController.createGeneralClothes);
 
 
-
 // get donation 
 router.get("/", verifyToken, allowedTo(userRoles.ADMIN), donationController.getAllDonations);
 
 // get donation by id 
-router.get("/orphanage/:orphanageid", verifyToken, allowedTo(userRoles.ADMIN), donationController.getDonationsByOrphanage);
+router.get("/orphanage/:orphanageid", verifyToken, allowedTo(userRoles.ADMIN, userRoles.ORPHANAGE_ADMIN), donationController.getDonationsByOrphanage);//check
 
 // Get donations for the logged-in donor
 router.get("/mine", verifyToken, allowedTo(userRoles.DONOR), donationController.getDonationDonor);
 
 // Get a single donation by ID
 router.get("/:id", verifyToken, allowedTo(userRoles.DONOR, userRoles.ADMIN), donationController.getDonationById);
+
+
 
 module.exports = router;
