@@ -34,6 +34,7 @@ const orphansRouter = require("./routes/orphans.route.js");
 const sponsorshipsRouter = require("./routes/sponsorships.route.js");
 const handleWebhook = require("./routes/webhook.route.js");
 const campaignRoutes = require("./routes/emergencyCampaign.route.js");
+const deliveryRequestRouter = require("./routes/deliveryRequest.route.js");
 const donationRouter = require('./routes/donation.route.js');
 const volunteerApplicationsRoutes = require("./routes/volunteerApplications.route.js");
 const orphanageVolunteerRequestsRoutes = require("./routes/orphanageVolunteerRequests.route.js");
@@ -46,7 +47,9 @@ app.use('/uploads', express.static('uploads'));
 
 // const volunteerApplicationsRoutes = require("./routes/VolunteerApplications.route");
 require("./jobs/sponsorshipCompletionJob.js");
-require("./jobs/campaignExpiryJob.js"); 
+require("./jobs/campaignExpiryJob.js");
+
+
 
 // use router as middleware
 // middleware1
@@ -59,9 +62,10 @@ app.use('/api/sponsorships', sponsorshipsRouter);
  app.use("/api/controlling-donations", controllingDonationRouter);
 app.use("/api/campaigns", campaignRoutes);
 app.use('/api/donations', donationRouter); 
+app.use("/api/deliveryRequest", deliveryRequestRouter);
 app.use("/api/orphanage/volunteer-requests", orphanageVolunteerRequestsRoutes);
 app.use("/api/dashboard", dashboardRoutes);
-
+app.use(express.static(path.join(__dirname, "public")));
 
 //(volunteer + orphanage admin)
 app.use("/api/volunteer/applications", volunteerApplicationsRoutes);

@@ -10,6 +10,18 @@ const UserSchema = new mongoose.Schema({
     phone: { type: String },
     address: { type: String },
     role: { type: String, enum: [userRoles.DONOR, userRoles.VOLUNTEER, userRoles.SPONSOR, userRoles.ORPHANAGE_ADMIN, userRoles.ADMIN, userRoles.DRIVER ], default: userRoles.DONOR, required: true },
+    driverStatus: { type: String, enum: ["BUSY", "AVAILABLE"], default: "AVAILABLE" },
+    driverCurrentLocation: {
+        type: {
+            type: String,
+            enum: ["Point"],
+            default: "Point"
+        },
+        coordinates: {
+            type: [Number],
+            default: [0, 0]
+        }
+    },
     avatar: { type: String, default: 'uploads/profile.png' },
     token: { type: String },
     stripeCustomerId: { type: String }, // for sponsors

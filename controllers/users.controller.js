@@ -5,6 +5,7 @@ const appError = require('../utilities/appError.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const generateJWT = require('../utilities/generateJWT.js');
+const userRoles = require('../utilities/userRoles.js');
 
 const getAllUsers = asyncWrapper(
     async (req,res) => {
@@ -35,6 +36,7 @@ const register = asyncWrapper(
 
         // password hashing:
         const hashedPassword = await bcrypt.hash(password, 10); // hash(password, salt /*adding random string - to protect against rainbow table anmd brute-force attacks*/)
+        const isDriver = role === userRoles.DRIVER;
 
         const newUser = new User({
             firstName,
@@ -44,6 +46,8 @@ const register = asyncWrapper(
             phone,
             address,
             role,
+            driverStatus: isDriver ? 'AVAILABLE' : undefined,
+            driverCurrentLocation: isDriver ? { type: 'Point', coordinates: [0, 0] } : undefined,
             avatar: avatarFilename
         });
 

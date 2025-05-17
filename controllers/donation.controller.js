@@ -23,7 +23,7 @@ const createBooksDonation = asyncWrapper(async (req, res, next) => {
     donationType: "Books",
     books,
     orphanage,
-    status: "On Arrive",
+    status: "Pending",
     transactionId: "TEMP"
   });
    await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
@@ -52,7 +52,7 @@ const createMidicalMaterial = asyncWrapper(async (req, res, next) => {
     donationType: "Material",
     material,
     orphanage,
-    status: "On Arrive",
+    status: "Pending",
     transactionId: "TEMP"
   });
    await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
@@ -81,7 +81,7 @@ const createEducationMaterial = asyncWrapper(async (req, res, next) => {
     donationType: "Material",
     material,
     orphanage,
-    status: "On Arrive",
+    status: "Pending",
     transactionId: "TEMP"
   });
    await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
@@ -109,7 +109,7 @@ const createGeneralFood = asyncWrapper(async (req, res, next) => {
     donationType: "Food",
     food,
     orphanage,
-    status: "On Arrive",
+    status: "Pending",
     transactionId: "TEMP"
   });
    await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
@@ -137,7 +137,7 @@ const createGeneralClothes = asyncWrapper(async (req, res, next) => {
     donationType: "Clothes",
     clothes,
     orphanage,
-    status: "On Arrive",
+    status: "Pending",
     transactionId: "TEMP"
   });
    await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
