@@ -1,0 +1,51 @@
+<!-- driver-location.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Location Uploader</title>
+</head>
+<body>
+  <h2>Driver Live Location Sharing</h2>
+  <p>Your location will update every 10 seconds.</p>
+  <p>Latitude:</p>
+  <p id="latitude"></p>
+  <p>Longitude:</p>
+  <p id="longitude"></p>
+
+  <script>
+    let token = localStorage.getItem("token"); // Or set it directly
+    if (!token) {
+      token = prompt("Please enter your token.");
+    }
+
+    setInterval(() => {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+
+        try {
+          const res = await fetch("https://2994-37-8-106-231.ngrok-free.app/api/deliveryRequest/drivers/location", {
+            method: "PUT",
+            headers: {
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ latitude, longitude })
+          });
+
+          if (res.ok){ 
+            console.log("Location updated.");
+            document.getElementById("latitude").innerText = latitude;
+            document.getElementById("longitude").innerText = longitude;
+          }
+          else console.error("Failed to update location.");
+        } catch (err) {
+          console.error("Error sending location:", err);
+        }
+      });
+    }, 10000); // Every 10 seconds
+  </script>
+</body>
+</html>

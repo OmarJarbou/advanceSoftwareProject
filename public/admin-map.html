@@ -1,0 +1,83 @@
+<!-- admin-map.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driver Tracking Dashboard</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    h2 {
+      text-align: center;
+      background: #444;
+      color: white;
+      padding: 1rem;
+      margin: 0;
+    }
+    #map {
+      height: 90vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h2>🚗 Real-Time Driver Locations</h2>
+  <div id="map"></div>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  ></script>
+  <script>
+    let token = localStorage.getItem("token"); // Or set it directly
+    if (!token) {
+      token = prompt("Please enter your token.");
+    }
+    const map = L.map("map").setView([32.2211, 35.2544], 12); // Adjust to your area
+    const markers = {};
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors"
+    }).addTo(map);
+
+    async function fetchDriverLocations() {
+      try {
+        const res = await fetch("https://2994-37-8-106-231.ngrok-free.app/api/deliveryRequest/drivers/busy/locations", {
+            method: "GET",
+            headers: {
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            }
+          });
+        const data = await res.json();
+        const drivers = data.data.locations;
+        console.log(drivers);
+
+        drivers.forEach(driver => {
+          const [latitude, longitude] = driver.location.coordinates;
+          console.log("Placing marker for driver:", driver.id, latitude, longitude);
+
+          if (markers[driver.id]) {
+            markers[driver.id].setLatLng([latitude, longitude]);
+          } else {
+            const marker = L.marker([latitude, longitude]).addTo(map);
+            marker.bindPopup(`<strong>${driver.name || "Driver"}</strong><br>${driver.email}`);
+            markers[driver.id] = marker;
+          }
+        });
+      } catch (err) {
+        console.error("Failed to load driver locations", err);
+      }
+    }
+
+    fetchDriverLocations();
+    setInterval(fetchDriverLocations, 10000); // Refresh every 10s
+  </script>
+</body>
+</html>

@@ -36,10 +36,10 @@ const handleWebhook = require("./routes/webhook.route.js");
 const donationRouter = require('./routes/donation.route.js');
 const volunteerRequestsRouter = require("./routes/VolunteerRequests.route.js");
 const campaignRoutes = require("./routes/emergencyCampaign.route.js");
-const driverRequestRouter = require("./routes/driverRequest.route.js");
+const deliveryRequestRouter = require("./routes/deliveryRequest.route.js");
 
 // const volunteerApplicationsRoutes = require("./routes/VolunteerApplications.route");
-// require("./jobs/sponsorshipCompletionJob.js");
+require("./jobs/sponsorshipCompletionJob.js");
 require("./jobs/campaignExpiryJob.js");
 
 // require("./routes/sponsorshipCompletionJob.route.js");
@@ -58,7 +58,8 @@ app.use('/api/sponsorships', sponsorshipsRouter);
 app.use("/api/volunteerRequests", volunteerRequestsRouter);
 app.use("/api/campaigns", campaignRoutes);
 app.use('/api/donations', donationRouter); 
-app.use("/api/driverRequest", driverRequestRouter);
+app.use("/api/deliveryRequest", deliveryRequestRouter);
+app.use(express.static(path.join(__dirname, "public")));
 
 
 // wild card:
