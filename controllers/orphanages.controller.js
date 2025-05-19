@@ -4,6 +4,7 @@ const appError = require("../utilities/appError.js");
 const httpStatusText = require("../utilities/httpStatusText.js");
 const {validationResult} = require('express-validator');
 const requestStatus = require("../utilities/requestStatus");
+const Orphan = require("../models/orphan.model.js");
 
 //get all orphanages: ok
 const getAllOrphanages = asyncWrapper(
@@ -52,9 +53,15 @@ const createOrphanage = asyncWrapper(
         // Check if the orphanage admin already has orphanage
         const existingOrphanage = await Orphanage.findOne({
             admin: userId,
-            status: { $in: [requestStatus.PENDING, requestStatus.APPROVED] }
+            status: { $in: [requestStatus.REJECTED, requestStatus.PENDING, requestStatus.APPROVED] }
         });
         if (existingOrphanage) {
+            if(existingOrphanage.status === requestStatus.REJECTED) {
+                return res.status(400).json({ 
+                    status: httpStatusText.FAIL, 
+                    message: "You have a rejected orphanage request. You have to delete it then you can create a new one." 
+                });
+            }
             return next(appError.create("You already have an orphanage request pending or approved.", 400, httpStatusText.FAIL));
         }
 
@@ -152,11 +159,17 @@ const updateOrphanage = asyncWrapper(async (req, res, next) => {
 const deleteOrphanage = asyncWrapper(async (req, res, next) => {
     const orphanageId = req.params.id;
     
-    const orphanage = await Orphanage.findByIdAndDelete(orphanageId);
+    const orphanage = await Orphanage.findById(orphanageId);
     
     if (!orphanage) {
         return next(appError.create("Orphanage not found", 404, httpStatusText.FAIL));
     }
+
+    // delete all orphans related to this orphanage
+    await Orphan.deleteMany({ orphanage: orphanageId });
+
+    // delete orphanage
+    await Orphanage.findByIdAndDelete(orphanageId);
 
     res.json({
         status: httpStatusText.SUCCESS,
