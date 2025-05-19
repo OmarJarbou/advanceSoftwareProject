@@ -57,7 +57,7 @@ const register = asyncWrapper(
             resultRole = userRoles.TEMPORARY;
         }
         // Check if the role is valid
-        if (![userRoles.DONOR, userRoles.DRIVER, userRoles.ORPHANAGE_ADMIN, userRoles.SPONSOR, userRoles.VOLUNTEER, userRoles.TEMPORARY].includes(resultRole)) {
+        if (![userRoles.DONOR, userRoles.SUPPORT_PROGRAM_ADMIN, userRoles.DRIVER, userRoles.ORPHANAGE_ADMIN, userRoles.SPONSOR, userRoles.VOLUNTEER, userRoles.TEMPORARY].includes(resultRole)) {
             const error = appError.create('Invalid role', 400, httpStatusText.FAIL);
             return next(error);
         }
@@ -194,7 +194,7 @@ const updateInfo = asyncWrapper(async (req, res, next) => {
             resultRole = userRoles.TEMPORARY;
         }
         // Check if the role is valid
-        if (![userRoles.DONOR, userRoles.DRIVER, userRoles.ORPHANAGE_ADMIN, userRoles.SPONSOR, userRoles.VOLUNTEER, userRoles.TEMPORARY].includes(resultRole)) {
+        if (![userRoles.DONOR, userRoles.SUPPORT_PROGRAM_ADMIN, userRoles.DRIVER, userRoles.ORPHANAGE_ADMIN, userRoles.SPONSOR, userRoles.VOLUNTEER, userRoles.TEMPORARY].includes(resultRole)) {
             const error = appError.create('Invalid role', 400, httpStatusText.FAIL);
             return next(error);
         }
