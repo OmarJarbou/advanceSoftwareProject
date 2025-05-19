@@ -24,7 +24,8 @@ router.route('/login')
     .post(usersController.login);
 
 router.route('/:id')
-    .delete(verifyToken, usersController.deleteUserById);
+    .delete(verifyToken, usersController.deleteUserById)
+    .get(verifyToken, usersController.getUserById);
 
 //Accept Adminitration Request
 router.route('/AdministrationRequest/:id')

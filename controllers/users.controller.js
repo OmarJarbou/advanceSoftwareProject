@@ -255,6 +255,16 @@ const deleteUserById = asyncWrapper(async (req, res, next) => {
     res.status(200).json({ status: httpStatusText.SUCCESS, message: "User deleted successfully." });
 });
 
+// get user by ID
+const getUserById = asyncWrapper(async (req, res, next) =>
+    {
+        const userId = req.params.id;
+        const user = await User.findById(userId, { __v: false, password: false, avatar: false });
+        if (!user) return next(appError.create("User not found", 404, httpStatusText.FAIL));
+        res.status(200).json({ status: httpStatusText.SUCCESS, data: { user } });
+    }
+);
+
 module.exports = {
     getAllUsers,
     register,
@@ -263,5 +273,6 @@ module.exports = {
     deleteMyAccount,
     deleteUserById,
     acceptAdministration,
-    getAllTemporaryUsers
+    getAllTemporaryUsers,
+    getUserById
 }
