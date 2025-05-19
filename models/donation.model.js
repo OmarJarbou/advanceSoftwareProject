@@ -18,6 +18,8 @@
 const mongoose = require('mongoose');
 
 const DonationSchema = new mongoose.Schema({
+  fee: { type: Number, default: 0 },//نسبة الخصم
+  netAmount: { type: Number, default: 0 },//المبلغ الصافي يلي رح يوصل للمؤسسة بعد ما نخصم العمولة
   donor: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   category: {
     type: String,
@@ -52,6 +54,8 @@ const DonationSchema = new mongoose.Schema({
     quantity: { type: Number }
   }],
   campaign: { type: mongoose.Schema.Types.ObjectId, ref: "EmergencyCampaign", default: null, required: false }
+
+  
 });
 
 module.exports = mongoose.model("Donation", DonationSchema);

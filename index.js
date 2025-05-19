@@ -39,12 +39,11 @@ const driverRequestRouter = require("./routes/driverRequest.route.js");
 const volunteerApplicationsRoutes = require("./routes/volunteerApplications.route.js");
 const orphanageVolunteerRequestsRoutes = require("./routes/orphanageVolunteerRequests.route.js");
 const orphanageApplicationsRoutes= require("./routes/orphanageApplications.route.js");
-
+const reviewRoutes = require('./routes/review.route.js');
+const settingsRoutes = require("./routes/systemSettings.route.js");
 // const volunteerApplicationsRoutes = require("./routes/VolunteerApplications.route");
-require("./routes/sponsorshipCompletionJob.route.js");
+require("./jobs/sponsorshipCompletionJob.js");
 require("./jobs/campaignExpiryJob.js");
-
-
 
 // use router as middleware
 // middleware1
@@ -63,6 +62,8 @@ app.use("/api/orphanage/volunteer-requests", orphanageVolunteerRequestsRoutes);
 //(volunteer + orphanage admin)
 app.use("/api/volunteer/applications", volunteerApplicationsRoutes);
 app.use("/api/orphanage/applications", orphanageApplicationsRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use("/api/settings", settingsRoutes);
 
 // wild card:
 // middleware2 - global middleware for not found root 
