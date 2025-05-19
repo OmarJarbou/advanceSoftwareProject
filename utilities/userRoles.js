@@ -4,6 +4,7 @@ const VOLUNTEER = "VOLUNTEER";
 const ADMIN = "ADMIN";
 const ORPHANAGE_ADMIN = "ORPHANAGE ADMIN";
 const DRIVER = "DRIVER";
+const TEMPORARY = "TEMPORARY"; // Temporary role for users applied/registered to be admins but not accepted yet
 
 module.exports = {
     DONOR,
@@ -11,5 +12,6 @@ module.exports = {
     VOLUNTEER,
     ADMIN,
     ORPHANAGE_ADMIN,
-    DRIVER
+    DRIVER,
+    TEMPORARY
 }

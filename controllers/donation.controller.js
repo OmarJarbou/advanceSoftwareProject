@@ -8,6 +8,7 @@ const httpStatusText = require("../utilities/httpStatusText.js");
 const SystemSettings = require("../models/systemSettings.model.js");
 const ExcelJS = require("exceljs");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const userRoles = require('../utilities/userRoles');
 
 const calculateFees = async (amount) => {
   const settings = await SystemSettings.findOne();
@@ -31,7 +32,7 @@ const createBooksDonation = asyncWrapper(async (req, res, next) => {
     donationType: "Books",
     books,
     orphanage,
-    status: "On Arrive",
+    status: "Pending",
     transactionId: "TEMP"
   });
    await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
@@ -60,7 +61,7 @@ const createMidicalMaterial = asyncWrapper(async (req, res, next) => {
     donationType: "Material",
     material,
     orphanage,
-    status: "On Arrive",
+    status: "Pending",
     transactionId: "TEMP"
   });
    await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
@@ -89,7 +90,7 @@ const createEducationMaterial = asyncWrapper(async (req, res, next) => {
     donationType: "Material",
     material,
     orphanage,
-    status: "On Arrive",
+    status: "Pending",
     transactionId: "TEMP"
   });
    await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
@@ -117,7 +118,7 @@ const createGeneralFood = asyncWrapper(async (req, res, next) => {
     donationType: "Food",
     food,
     orphanage,
-    status: "On Arrive",
+    status: "Pending",
     transactionId: "TEMP"
   });
    await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
@@ -145,7 +146,7 @@ const createGeneralClothes = asyncWrapper(async (req, res, next) => {
     donationType: "Clothes",
     clothes,
     orphanage,
-    status: "On Arrive",
+    status: "Pending",
     transactionId: "TEMP"
   });
    await Orphanage.findByIdAndUpdate(orphanage, { $push: { donations: donation._id } });
@@ -369,8 +370,7 @@ const getAllDonations = asyncWrapper(async (req, res, next) => {
 //////////////get donation by ID 
 const getDonationsByOrphanage = asyncWrapper(async (req, res, next) => {
   const { orphanageid } = req.params; 
-
-  const donations = await Donation.find({ orphanage: orphanageid });
+    const donations = await Donation.find({ orphanage: orphanageid });
 
   if (!donations || donations.length === 0) {
     return next(appError.create("No donations found for this orphanage", 404, httpStatusText.FAIL));

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Claim Delivery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      max-width: 500px;
+      margin: auto;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      color: #333;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #2d89ef;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>🚚 Claim Delivery Request</h2>
+  <p>You're about to claim a delivery. Click the button below to confirm.</p>
+
+  <button id="claimBtn">Claim Delivery</button>
+  <p id="result"></p>
+
+  <script>
+    const claimBtn = document.getElementById("claimBtn");
+    const resultEl = document.getElementById("result");
+
+    // Extract the delivery ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const deliveryId = params.get("deliveryId");
+
+    claimBtn.addEventListener("click", async () => {
+      const token = prompt("Please enter your authentication token:");
+
+      if (!token) {
+        resultEl.textContent = "❌ Token is required.";
+        return;
+      }
+
+      const baseUrl = window.location.origin;
+
+      try {
+        const res = await fetch(`${baseUrl}/api/deliveryRequest/claim/${deliveryId}`, {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          resultEl.textContent = "✅ Delivery successfully claimed!";
+        } else {
+          resultEl.textContent = `❌ Error: ${data.message}`;
+        }
+      } catch (error) {
+        resultEl.textContent = `❌ Request failed: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -33,7 +33,7 @@ const DonationSchema = new mongoose.Schema({
   },
   amount: { type: Number },  // المبلغ (في حالة التبرعات المالية)
   transactionId: { type: String, required: true },
-  status: { type: String, enum: ["Pending", "Completed" , "On Arrive"], default: "Pending" },
+  status: { type: String, enum: ["Pending", "Completed" , "On Arrive", "Controlled"], default: "Pending" },
   orphanage: { type: mongoose.Schema.Types.ObjectId, ref: "Orphanage", required: false },
   createdAt: { type: Date, default: Date.now },
   books: [{
