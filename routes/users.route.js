@@ -23,6 +23,10 @@ router.route('/register')
 router.route('/login')
     .post(usersController.login);
 
+//Get All Users With Role TEMPORARY
+router.route('/temporary')
+    .get(verifyToken, allowedTo(userRoles.ADMIN), usersController.getAllTemporaryUsers);
+
 router.route('/:id')
     .delete(verifyToken, usersController.deleteUserById)
     .get(verifyToken, usersController.getUserById);
@@ -30,10 +34,6 @@ router.route('/:id')
 //Accept Adminitration Request
 router.route('/AdministrationRequest/:id')
     .put(verifyToken, allowedTo(userRoles.ADMIN), usersController.acceptAdministration);
-
-//Get All Users With Role TEMPORARY
-router.route('/temporary')
-    .get(verifyToken, allowedTo(userRoles.ADMIN), usersController.getAllTemporaryUsers);
 
 //Forget Password
 // router.route('/forgetPassword')
