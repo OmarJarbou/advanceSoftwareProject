@@ -7,6 +7,7 @@ const appError = require("../utilities/appError");
 const httpStatusText = require("../utilities/httpStatusText");
 const sendEmail = require("../utilities/sendEmail");
 const mongoose = require("mongoose");
+const userRoles = require("../utilities/userRoles");
 
 // create new delivery request
 const createDeliveryRequest = asyncWrapper(async (req, res, next) => {
@@ -260,7 +261,8 @@ const getDriverLocation = asyncWrapper(async (req, res, next) => {
 
 // get all busy drivers locations
 const getAllBusyDriversLocations = asyncWrapper(async (req, res, next) => {
-  const busyDrivers = await User.find({ driverStatus: "BUSY" });
+  const busyDrivers = await User.find({ role: userRoles.DRIVER, driverStatus: "BUSY" });
+  
   if (!busyDrivers.length) {
     return next(appError.create("No busy drivers found", 404, httpStatusText.FAIL));
   }

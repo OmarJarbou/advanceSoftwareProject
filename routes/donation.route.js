@@ -43,4 +43,19 @@ router.get("/:id", verifyToken, allowedTo(userRoles.DONOR, userRoles.ADMIN, user
 
 
 
+
+
+
+router.get(
+  "/admin/export-fees",
+  verifyToken,
+  allowedTo(userRoles.ADMIN),
+  donationController.exportFeesReportExcel
+);
+router.get(
+  "/admin/financial-summary",
+  verifyToken,
+  allowedTo(userRoles.ADMIN),
+  donationController.getDonationFinanceSummary
+);
 module.exports = router;

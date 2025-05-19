@@ -52,8 +52,10 @@
         return;
       }
 
+      const baseUrl = window.location.origin;
+
       try {
-        const res = await fetch(`https://2994-37-8-106-231.ngrok-free.app/api/deliveryRequest/claim/${deliveryId}`, {
+        const res = await fetch(`${baseUrl}/api/deliveryRequest/claim/${deliveryId}`, {
           method: "POST",
           headers: {
             "Authorization": `Bearer ${token}`,

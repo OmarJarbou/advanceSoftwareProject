@@ -39,18 +39,18 @@ const donationRouter = require('./routes/donation.route.js');
 const volunteerApplicationsRoutes = require("./routes/volunteerApplications.route.js");
 const orphanageVolunteerRequestsRoutes = require("./routes/orphanageVolunteerRequests.route.js");
 const orphanageApplicationsRoutes= require("./routes/orphanageApplications.route.js");
+const reviewRoutes = require('./routes/review.route.js');
 const controllingDonationRouter = require("./routes/controlDonation.route.js");
 const dashboardRoutes = require("./routes/dashboard.route.js");
+const settingsRoutes = require("./routes/systemSettings.route.js");
 const supportProgramRoutes = require("./routes/supportProgram.route");
 
 
-app.use('/uploads', express.static('uploads'));
 
-// const volunteerApplicationsRoutes = require("./routes/VolunteerApplications.route");
+
+app.use('/uploads', express.static('uploads'));
 require("./jobs/sponsorshipCompletionJob.js");
 require("./jobs/campaignExpiryJob.js");
-
-
 
 // use router as middleware
 // middleware1
@@ -71,8 +71,9 @@ app.use(express.static(path.join(__dirname, "public")));
 //(volunteer + orphanage admin)
 app.use("/api/volunteer/applications", volunteerApplicationsRoutes);
 app.use("/api/orphanage/applications", orphanageApplicationsRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use("/api/settings", settingsRoutes);
 app.use("/api/support-programs", supportProgramRoutes);
-
 
 // wild card:
 // middleware2 - global middleware for not found root 

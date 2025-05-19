@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
     phone: { type: String },
     address: { type: String },
-    role: { type: String, enum: [userRoles.DONOR, userRoles.VOLUNTEER, userRoles.SPONSOR, userRoles.ORPHANAGE_ADMIN, userRoles.ADMIN, userRoles.DRIVER, userRoles.SUPPORT_PROGRAM_ADMIN ], default: userRoles.DONOR, required: true },
+    role: { type: String, enum: [userRoles.DONOR, userRoles.VOLUNTEER, userRoles.SPONSOR, userRoles.ORPHANAGE_ADMIN, userRoles.ADMIN, userRoles.DRIVER, userRoles.SUPPORT_PROGRAM_ADMIN , userRoles.TEMPORARY], default: userRoles.DONOR, required: true },
     driverStatus: { type: String, enum: ["BUSY", "AVAILABLE"], default: "AVAILABLE" },
     driverCurrentLocation: {
         type: {
@@ -25,8 +25,7 @@ const UserSchema = new mongoose.Schema({
     avatar: { type: String, default: 'uploads/profile.png' },
     token: { type: String },
     stripeCustomerId: { type: String }, // for sponsors
-    createdAt: { type: Date, default: Date.now },
-    driverStatus:{type: String, enum: ["Busy","Available"], default: "Available"}
+    createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("User", UserSchema);
