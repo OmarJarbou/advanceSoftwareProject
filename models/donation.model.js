@@ -18,8 +18,7 @@
 const mongoose = require('mongoose');
 
 const DonationSchema = new mongoose.Schema({
-  
-  donor: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+   donor: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   category: {
     type: String,
     enum: ["General Fund", "Education Support", "Medical Aid", "Emergency Relief"],
@@ -35,6 +34,8 @@ const DonationSchema = new mongoose.Schema({
   status: { type: String, enum: ["Pending", "Completed" , "On Arrive", "Controlled"], default: "Pending" },
   orphanage: { type: mongoose.Schema.Types.ObjectId, ref: "Orphanage", required: false },
   createdAt: { type: Date, default: Date.now },
+  supportProgram: { type: mongoose.Schema.Types.ObjectId, ref: "SupportProgram"}, // إضافة هذا الحقل
+  
   books: [{
     name: { type: String },
     quantity: { type: Number }

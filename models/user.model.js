@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
     phone: { type: String },
     address: { type: String },
-    role: { type: String, enum: [userRoles.DONOR, userRoles.VOLUNTEER, userRoles.SPONSOR, userRoles.ORPHANAGE_ADMIN, userRoles.ADMIN, userRoles.DRIVER ], default: userRoles.DONOR, required: true },
+    role: { type: String, enum: [userRoles.DONOR, userRoles.VOLUNTEER, userRoles.SPONSOR, userRoles.ORPHANAGE_ADMIN, userRoles.ADMIN, userRoles.DRIVER, userRoles.SUPPORT_PROGRAM_ADMIN ], default: userRoles.DONOR, required: true },
     driverStatus: { type: String, enum: ["BUSY", "AVAILABLE"], default: "AVAILABLE" },
     driverCurrentLocation: {
         type: {

@@ -10,10 +10,10 @@ const userRoles = require('../utilities/userRoles');
 
 
 const createBooksDonation = asyncWrapper(async (req, res, next) => {
-  const { books, orphanage } = req.body;
-  const donor = req.currentUser.id;
-  
-  if (!books || !donor) {
+  const { books, orphanage, supportProgram } = req.body;
+    const donor = req.currentUser.id;
+
+  if (!books  ) {
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
   }
 
@@ -23,6 +23,7 @@ const createBooksDonation = asyncWrapper(async (req, res, next) => {
     donationType: "Books",
     books,
     orphanage,
+    supportProgram,
     status: "Pending",
     transactionId: "TEMP"
   });
@@ -39,10 +40,10 @@ const createBooksDonation = asyncWrapper(async (req, res, next) => {
 //////// creat midical aid material 
 
 const createMidicalMaterial = asyncWrapper(async (req, res, next) => {
-  const { material, orphanage } = req.body;
-  const donor = req.currentUser.id;
-  
-  if (!material || !donor) {
+  const { material, orphanage,supportProgram } = req.body;
+      const donor = req.currentUser.id;
+
+  if (!material  ) {
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
   }
 
@@ -52,6 +53,7 @@ const createMidicalMaterial = asyncWrapper(async (req, res, next) => {
     donationType: "Material",
     material,
     orphanage,
+    supportProgram,
     status: "Pending",
     transactionId: "TEMP"
   });
@@ -68,19 +70,21 @@ const createMidicalMaterial = asyncWrapper(async (req, res, next) => {
 
 /////// creat Education material 
 const createEducationMaterial = asyncWrapper(async (req, res, next) => {
-  const {material, orphanage } = req.body;
-  const donor = req.currentUser.id;
+  const {material, orphanage, supportProgram } = req.body;
   
-  if (!material || !donor) {
+      const donor = req.currentUser.id;
+
+  if (!material ) {
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
   }
 
   const donation = new Donation({
     donor,
-    category: "Education Support",
+      category: "Education Support",
     donationType: "Material",
     material,
     orphanage,
+    supportProgram,
     status: "Pending",
     transactionId: "TEMP"
   });
@@ -96,10 +100,11 @@ const createEducationMaterial = asyncWrapper(async (req, res, next) => {
 
 /////// creat General Food 
 const createGeneralFood = asyncWrapper(async (req, res, next) => {
-  const {food, orphanage } = req.body;
-  const donor = req.currentUser.id;
-  
-  if (!food || !donor) {
+  const {food, orphanage, supportProgram } = req.body;
+
+      const donor = req.currentUser.id;
+
+  if (!food ) {
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
   }
 
@@ -109,6 +114,7 @@ const createGeneralFood = asyncWrapper(async (req, res, next) => {
     donationType: "Food",
     food,
     orphanage,
+    supportProgram,
     status: "Pending",
     transactionId: "TEMP"
   });
@@ -124,10 +130,10 @@ const createGeneralFood = asyncWrapper(async (req, res, next) => {
 
 /////// creat General Clothes 
 const createGeneralClothes = asyncWrapper(async (req, res, next) => {
-  const {clothes, orphanage } = req.body;
-  const donor = req.currentUser.id;
-  
-  if (!clothes || !donor) {
+  const {clothes, orphanage, supportProgram } = req.body;
+      const donor = req.currentUser.id;
+
+  if (!clothes ) {
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
   }
 
@@ -137,6 +143,7 @@ const createGeneralClothes = asyncWrapper(async (req, res, next) => {
     donationType: "Clothes",
     clothes,
     orphanage,
+    supportProgram,
     status: "Pending",
     transactionId: "TEMP"
   });
@@ -154,11 +161,13 @@ const createGeneralClothes = asyncWrapper(async (req, res, next) => {
 
 const createDonationEducattionFinancial = asyncWrapper(async (req, res, next) => {
 
-   const { amount, orphanage} = req.body;
-  const donor = req.currentUser.id;
+   const { amount, orphanage, supportProgram} = req.body;
+
+      const donor = req.currentUser.id;
+
   const category="Education Support";
   // Basic validation
-  if (!donor || !amount) {
+  if (!amount ) {
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
   }
 
@@ -169,6 +178,7 @@ const createDonationEducattionFinancial = asyncWrapper(async (req, res, next) =>
     donationType: "Financial",
     amount,
     orphanage,
+    supportProgram,
     status: "Pending",
     transactionId: "TEMP"  // Later updated with real transaction ID from payment gateway
   });
@@ -215,11 +225,12 @@ const createDonationEducattionFinancial = asyncWrapper(async (req, res, next) =>
 /////general-financial 
 const createDonationGeneralFinancial = asyncWrapper(async (req, res, next) => {
 
-   const { amount, orphanage} = req.body;
-  const donor = req.currentUser.id;
+   const { amount, orphanage, supportProgram} = req.body;
+      const donor = req.currentUser.id;
+
   const category="General Fund";
   // Basic validation
-  if (!donor || !amount) {
+  if ( !amount) {
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
   }
 
@@ -230,6 +241,7 @@ const createDonationGeneralFinancial = asyncWrapper(async (req, res, next) => {
     donationType: "Financial",
     amount,
     orphanage,
+    supportProgram, 
     status: "Pending",
     transactionId: "TEMP"  // Later updated with real transaction ID from payment gateway
   });
@@ -277,11 +289,12 @@ const createDonationGeneralFinancial = asyncWrapper(async (req, res, next) => {
 /////general-financial 
 const createDonationMidicalFinancial = asyncWrapper(async (req, res, next) => {
 
-   const { amount, orphanage} = req.body;
-  const donor = req.currentUser.id;
+   const { amount, orphanage, supportProgram} = req.body;
+      const donor = req.currentUser.id;
+
   const category="Medical Aid";
   // Basic validation
-  if (!donor || !amount) {
+  if ( !amount) {
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
   }
 
@@ -292,6 +305,7 @@ const createDonationMidicalFinancial = asyncWrapper(async (req, res, next) => {
     donationType: "Financial",
     amount,
     orphanage,
+    supportProgram,
     status: "Pending",
     transactionId: "TEMP"  // Later updated with real transaction ID from payment gateway
   });
@@ -338,9 +352,12 @@ const createDonationMidicalFinancial = asyncWrapper(async (req, res, next) => {
 
 //////get all donations
 const getAllDonations = asyncWrapper(async (req, res, next) => {
-  const donations = await Donation.find();  
+  const donations = await Donation.find()  
 
- 
+  .populate("donor", "firstName lastName role _id") 
+    .populate("orphanage", "name location")
+    .populate("supportProgram", "name description"); // إذا كنت بحاجة لعرض الدعم الخاص بالتبرع.
+
   if (!donations) {
     return next(appError.create("No donations found", 404, httpStatusText.FAIL));
   }
@@ -350,8 +367,24 @@ const getAllDonations = asyncWrapper(async (req, res, next) => {
 });
 //////////////get donation by ID 
 const getDonationsByOrphanage = asyncWrapper(async (req, res, next) => {
-  const { orphanageid } = req.params; 
-    const donations = await Donation.find({ orphanage: orphanageid });
+  const { orphanageid } = req.params;
+  const currentUser = req.currentUser;
+
+  // Check if user is orphanage admin
+  if (currentUser.role === userRoles.ORPHANAGE_ADMIN) {
+    const orphanage = await Orphanage.findOne({ _id: orphanageid, admin: currentUser.id });
+    if (!orphanage) {
+      return next(appError.create("Unauthorized to access donations for this orphanage", 403, httpStatusText.FAIL));
+    }
+  }
+
+  // Admin can view any, donor not allowed here (unless you want to handle that too)
+  
+
+  const donations = await Donation.find({ orphanage: orphanageid })
+    .populate("donor", "firstName lastName role _id")
+    .populate("orphanage", "name location")
+    .populate("supportProgram", "name description");
 
   if (!donations || donations.length === 0) {
     return next(appError.create("No donations found for this orphanage", 404, httpStatusText.FAIL));
@@ -360,12 +393,16 @@ const getDonationsByOrphanage = asyncWrapper(async (req, res, next) => {
   return res.json({ status: httpStatusText.SUCCESS, data: { donations } });
 });
 
+
 const getDonationDonor = asyncWrapper(async (req, res, next) => {
   const donor = req.currentUser.id; // Get the current logged-in user (donor)
 
   // Find donations associated with the donor
-  const donations = await Donation.find({ donor: donor }).populate("orphanage", "name location");
-
+  const donations = await Donation.find({ donor: donor })
+  .populate("donor", "firstName lastName role _id") // populate added for 'createdBy' to get 'role' and '_id'
+    .populate("supportProgram", "name description")
+    .populate("orphanage", "name location");
+  
   if (!donations || donations.length === 0) {
     return next(appError.create("No donations found for this donor", 404, httpStatusText.FAIL));
   }

@@ -194,15 +194,8 @@ const updateControlDonation = asyncWrapper(async (req, res, next) => {
 
     if (userRole === "ORPHANAGE ADMIN" && !orphanage.admin.equals(userId)) {
       return next(appError.create("Unauthorized - you are not admin of this orphanage", 403, httpStatusText.FAIL));
-    } else if (userRole !== "ADMIN") {
-      return next(appError.create("Unauthorized", 403, httpStatusText.FAIL));
-    }
-  } else {
-    // حالة سجل التحكم بدون orphanage مرتبط - فقط Admin يسمح له
-    if (userRole !== "ADMIN") {
-      return next(appError.create("Unauthorized", 403, httpStatusText.FAIL));
-    }
-  }
+    
+  } 
 
   // 3. تحديث الحقول المسموح بها فقط (لتجنب التحديثات غير المرغوبة)
   const allowedUpdates = ["usageSummary", "orphansImpacted", "photos", "notes"];
@@ -220,7 +213,7 @@ const updateControlDonation = asyncWrapper(async (req, res, next) => {
     message: "Control donation record updated successfully",
     data: { record }
   });
-});
+}});
 
 
 

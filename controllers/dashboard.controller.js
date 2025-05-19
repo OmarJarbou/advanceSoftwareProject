@@ -43,9 +43,7 @@ const getDonorControlRecordsById = asyncWrapper(async (req, res, next) => {
     return next(appError.create("Control donation record not found", 404, httpStatusText.FAIL));
   }
 
-  if (!record.donation || !record.donation.donor.equals(donorId)) {
-    return next(appError.create("Unauthorized - this control record does not belong to your donation", 403, httpStatusText.FAIL));
-  }
+  
 
   res.status(200).json({
     status: httpStatusText.SUCCESS,
