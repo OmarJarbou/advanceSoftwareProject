@@ -39,6 +39,7 @@
     if (!token) {
       token = prompt("Please enter your token.");
     }
+    const baseUrl = window.location.origin;
     const map = L.map("map").setView([32.2211, 35.2544], 12); // Adjust to your area
     const markers = {};
 
@@ -48,7 +49,7 @@
 
     async function fetchDriverLocations() {
       try {
-        const res = await fetch("https://2994-37-8-106-231.ngrok-free.app/api/deliveryRequest/drivers/busy/locations", {
+        const res = await fetch(`${baseUrl}/api/deliveryRequest/drivers/busy/locations`, {
             method: "GET",
             headers: {
               "Authorization": `Bearer ${token}`,

@@ -19,6 +19,7 @@
     if (!token) {
       token = prompt("Please enter your token.");
     }
+    const baseUrl = window.location.origin;
 
     setInterval(() => {
       navigator.geolocation.getCurrentPosition(async (position) => {
@@ -26,7 +27,7 @@
         console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
 
         try {
-          const res = await fetch("https://2994-37-8-106-231.ngrok-free.app/api/deliveryRequest/drivers/location", {
+          const res = await fetch(`${baseUrl}/api/deliveryRequest/drivers/location`, {
             method: "PUT",
             headers: {
               "Authorization": `Bearer ${token}`,

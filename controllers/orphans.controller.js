@@ -76,6 +76,26 @@ const getOrphanById = asyncWrapper(
     }
 );
 
+const getOrphanPhotos = asyncWrapper(async (req, res, next) => {
+  const orphanId = req.params.orphanid;
+
+  const orphan = await Orphan.findById(orphanId);
+  if (!orphan) {
+    return next(appError.create("Orphan not found", 404, httpStatusText.FAIL));
+  }
+
+  const photos = orphan.photos || [];
+
+  // Build full URLs for each image
+  const photoUrls = photos.map(filename => `${process.env.FRONTEND_URL}/uploads/orphans/${filename}`);
+
+  return res.status(200).json({
+    status: httpStatusText.SUCCESS,
+    data: { photos: photoUrls }
+  });
+});
+
+
 // Get orphan by ID in orphanage: ok
 const getOrphanByIdInOrphanage = asyncWrapper(
     async (req, res, next) => {
@@ -105,9 +125,11 @@ const createOrphan = asyncWrapper(
             return next(error);
         }
 
-        const { name, age, gender, educationStatus, healthCondition, orphanage, photos } = req.body;
+        const { name, age, gender, educationStatus, healthCondition, orphanage } = req.body;
         const orphanageAdmin=req.currentUser.id;
+        console.log(orphanageAdmin);
         const orphanageDoc = await Orphanage.findById(new mongoose.Types.ObjectId(orphanage));
+        const photoFilenames = req.files?.map(file => file.filename) || [];
 
         const newOrphan = new Orphan({
             name:name,
@@ -117,7 +139,7 @@ const createOrphan = asyncWrapper(
             healthCondition:healthCondition,
             orphanage:orphanage,
             orphanageAdmin:orphanageAdmin,
-            photos:photos
+            photos:photoFilenames
         });
         await newOrphan.save();
         orphanageDoc.orphans.push(newOrphan);
@@ -183,5 +205,6 @@ module.exports = {
     getOrphanByIdInOrphanage,
     createOrphan,
     updateOrphan,
-    deleteOrphan
+    deleteOrphan,
+    getOrphanPhotos
 };
