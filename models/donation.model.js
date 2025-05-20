@@ -19,7 +19,11 @@ const mongoose = require('mongoose');
 
 const DonationSchema = new mongoose.Schema({
   fee: { type: Number, default: 0 },//نسبة الخصم
-  netAmount: { type: Number, default: 0 },
+  netAmount: { type: Number,
+    default: function () {
+      return this.amount;
+    }
+  },
   donor: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   category: {
     type: String,
@@ -31,7 +35,7 @@ const DonationSchema = new mongoose.Schema({
     enum: ["Books", "Clothes", "Food", "Financial", "Material"],
     required: true
   },
-  amount: { type: Number },  // المبلغ (في حالة التبرعات المالية)
+  amount: { type: Number, default: 0 },  // المبلغ (في حالة التبرعات المالية)
   transactionId: { type: String, required: true },
   status: { type: String, enum: ["Pending", "Completed" , "On Arrive", "Controlled"], default: "Pending" },
   orphanage: { type: mongoose.Schema.Types.ObjectId, ref: "Orphanage", required: false },
