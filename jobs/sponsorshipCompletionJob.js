@@ -50,7 +50,7 @@ cron.schedule("0 * * * *", async () => {
         for (let sponsorship of expiredSponsorships) {
 
             console.log("CANCEL SUB");
-            
+
             // Cancel the Stripe subscription
             if (sponsorship.subscriptionId) {
                 try {
@@ -71,8 +71,6 @@ cron.schedule("0 * * * *", async () => {
         
     } catch (error) {
         console.error("❌ Error in sponsorship completion job:", error);
-    } finally {
-        mongoose.connection.close(); // Close the database connection
     }
 });
 
