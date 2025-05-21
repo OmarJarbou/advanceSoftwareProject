@@ -102,11 +102,16 @@ const claimDeliveryRequest = asyncWrapper(async (req, res, next) => {
     return next(appError.create("Delivery request is no longer available", 400, httpStatusText.FAIL));
   }
 
+  // Update delivery status to CLAIMED and assign driver
   delivery.status = "CLAIMED";
   delivery.driver = driverId;
+  const donation = delivery.donation;
   await delivery.save();
 
+  // Update driver status to BUSY
   await User.findByIdAndUpdate(driverId, { driverStatus: "BUSY" });
+  // Update status of delivery to On Arrive
+  await Donation.findByIdAndUpdate(donation, { status: "On Arrive" });
 
   res.status(200).json({
     status: httpStatusText.SUCCESS,
@@ -152,6 +157,12 @@ const updateDeliveryStatus = asyncWrapper(async (req, res, next) => {
   // If final status, mark driver as available
   if (["DELIVERED", "CANCELED"].includes(status)) {
     await User.findByIdAndUpdate(driverId, { driverStatus: "AVAILABLE" });
+    // if status is delivered update the donation status
+    if (status === "DELIVERED") {
+      await Donation.findByIdAndUpdate(delivery.donation, { status: "Completed" });
+    }else {
+      await Donation.findByIdAndUpdate(delivery.donation, { status: "Pending" });
+    }
   }
 
   res.status(200).json({

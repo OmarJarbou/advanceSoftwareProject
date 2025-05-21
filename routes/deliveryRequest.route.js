@@ -41,6 +41,7 @@ router.patch(
 router.get(
   "/my",
   verifyToken,
+  allowedTo(userRoles.DONOR, userRoles.DRIVER),
   deliveryController.getMyDeliveryRequests
 );
 
@@ -50,6 +51,7 @@ router.get(
   verifyToken,
   deliveryController.getDeliveryRequestById
 );
+// *************
 
 // Driver updates current location
 router.put(
@@ -58,6 +60,7 @@ router.put(
   allowedTo(userRoles.DRIVER),
   deliveryController.updateDriverLocation
 );
+// *************
 
 // Get current driver location for a delivery
 router.get(

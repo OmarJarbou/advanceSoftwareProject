@@ -21,6 +21,9 @@ const createControlDonation = asyncWrapper(async (req, res, next) => {
   if (!donation) {
     return next(appError.create("Donation not found", 404, httpStatusText.FAIL));
   }
+  if (donation.status !== "Completed") {
+    return next(appError.create("Donation must be completed before controlling", 400, httpStatusText.FAIL));
+  }
 
   const userId = req.currentUser.id;
   const userRole = req.currentUser.role;
