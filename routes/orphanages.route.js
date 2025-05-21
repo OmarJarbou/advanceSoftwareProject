@@ -15,7 +15,7 @@ router
   .route("/:id")
   .get(orphanageController.getOrphanageById)
   .patch(verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), checkOrphanage, orphanageController.updateOrphanage) // Only Orphanage Admin
-  .delete(verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), checkOrphanage, orphanageController.deleteOrphanage); // Only Orphanage Admin
+  .delete(verifyToken, allowedTo(userRoles.ORPHANAGE_ADMIN), orphanageController.deleteOrphanage); // Only Orphanage Admin
 
 router
   .route("/:id/approve")

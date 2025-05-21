@@ -157,12 +157,16 @@ const updateOrphanage = asyncWrapper(async (req, res, next) => {
 
 // Delete orphanage: ok
 const deleteOrphanage = asyncWrapper(async (req, res, next) => {
+    const orphangeAdmin = req.currentUser.id;
     const orphanageId = req.params.id;
     
     const orphanage = await Orphanage.findById(orphanageId);
     
     if (!orphanage) {
         return next(appError.create("Orphanage not found", 404, httpStatusText.FAIL));
+    }
+    if (orphanage.admin.toString() !== orphangeAdmin) {
+        return next(appError.create("You are not authorized to delete this orphanage", 403, httpStatusText.FAIL));
     }
 
     // delete all orphans related to this orphanage
