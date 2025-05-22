@@ -196,6 +196,25 @@ const getSupportProgramByOrphanage = asyncWrapper(async (req, res, next) => {
 
 
 // Delete support program (by owner only)
+// const deleteSupportProgram = asyncWrapper(async (req, res, next) => {
+// const { id } = req.params;
+
+// const program = await SupportProgram.findById(id);
+// if (!program) {
+// return next(appError.create("Support Program not found", 404, httpStatusText.FAIL));
+// }
+
+// if (!program.createdBy.equals(req.currentUser.id)) {
+// return next(appError.create("Unauthorized - you didn't create this program", 403, httpStatusText.FAIL));
+// }
+
+// await SupportProgram.findByIdAndDelete(id);
+
+// res.status(200).json({
+// status: httpStatusText.SUCCESS,
+// message: "Support Program deleted successfully"
+// });
+// });
 const deleteSupportProgram = asyncWrapper(async (req, res, next) => {
 const { id } = req.params;
 
@@ -204,8 +223,16 @@ if (!program) {
 return next(appError.create("Support Program not found", 404, httpStatusText.FAIL));
 }
 
+// تحقق من أن المستخدم هو من أنشأ البرنامج
 if (!program.createdBy.equals(req.currentUser.id)) {
 return next(appError.create("Unauthorized - you didn't create this program", 403, httpStatusText.FAIL));
+}
+
+// إذا كان مرتبط بـ orphanage، نحذفه من داخل orphanage
+if (program.orphanage) {
+await Orphanage.findByIdAndUpdate(program.orphanage, {
+$pull: { supportPrograms: program._id }
+});
 }
 
 await SupportProgram.findByIdAndDelete(id);

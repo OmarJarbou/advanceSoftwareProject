@@ -1,0 +1,681 @@
+[
+  {
+    "_id": "67c2bd6e1636c2bb551780ae",
+    "firstName": "Ahmad",
+    "lastName": "Naser",
+    "email": "ahmadn@gmail.com",
+    "password": "$2b$10$aSqt2Ujp/WGwG2uCdD1UD.gAkXdQPbv/SdTywmTJEbl4/vf0F/4X2",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzJiZDZlMTYzNmMyYmI1NTE3ODBhZSIsImVtYWlsIjoiNjdjMmJkNmUxNjM2YzJiYjU1MTc4MGFlIiwiaWF0IjoxNzQwODE1NzI2LCJleHAiOjE3NDA4MTkzMjZ9.0klchEeJaFgCxhi9v5xZh4d4uIOM5l_tZ0s7306Wln4",
+    "__v": 0,
+    "role": "USER"
+  },
+  {
+    "_id": "67c2db309807fd1328fd6e7c",
+    "firstName": "Khalid",
+    "lastName": "Samer",
+    "email": "khalids@gmail.com",
+    "password": "$2b$10$nj9ApH5LCW9Qdn39FONOve7VYzs74VVbXVhNVj/Ly20tgDctG1.2q",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzJkYjMwOTgwN2ZkMTMyOGZkNmU3YyIsImVtYWlsIjoia2hhbGlkc0BnbWFpbC5jb20iLCJpYXQiOjE3NDA4MjMzNDQsImV4cCI6MTc0MDgyNjk0NH0.MFinhe-GA_g0cjdy1YLH9dhEI2TlE8OZBNfNGZBdim0",
+    "__v": 0,
+    "role": "USER"
+  },
+  {
+    "_id": "67c2db709807fd1328fd6e7f",
+    "firstName": "Khalil",
+    "lastName": "Samer",
+    "email": "khalils@gmail.com",
+    "password": "$2b$10$rqRPh9NdQ8VVkJ1rMgXLRObmmQtkpdQWeIpitY446m58zbzpHUBzS",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzJkYjcwOTgwN2ZkMTMyOGZkNmU3ZiIsImVtYWlsIjoia2hhbGlsc0BnbWFpbC5jb20iLCJpYXQiOjE3NDA4MjM0MDgsImV4cCI6MTc0MDgyNzAwOH0.KuwMOMBnIBktnHOzLJR4zsjcANnWqQWM63TIW-4f66U",
+    "__v": 0,
+    "role": "USER"
+  },
+  {
+    "_id": "67c2e66ca53569a60c8b49b7",
+    "firstName": "Salah",
+    "lastName": "Samer",
+    "email": "salahs@gmail.com",
+    "password": "$2b$10$K5OH.KNjTL5R/VuXbT3eh.1jv6vgktbAKbSNxqqGBeUh69DrLd57.",
+    "role": "ADMIN",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzJlNjZjYTUzNTY5YTYwYzhiNDliNyIsImVtYWlsIjoic2FsYWhzQGdtYWlsLmNvbSIsImlhdCI6MTc0MDgyNjIyMCwiZXhwIjoxNzQwODI5ODIwfQ.NZ2yrCAFAEEXo_RDeUKgCERi43mvZcLXU7SUqNWuLbQ",
+    "__v": 0
+  },
+  {
+    "_id": "67c2f07e064856a958bdf014",
+    "firstName": "Saleh",
+    "lastName": "Samer",
+    "email": "salehs@gmail.com",
+    "password": "$2b$10$cVHr1EFuRG4hM0RT0iKfC.4Cm.jAomhmqJdn8cHvwvgFujhUIokvS",
+    "role": "USER",
+    "avatar": "uploads/profile.png",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzJmMDdlMDY0ODU2YTk1OGJkZjAxNCIsImVtYWlsIjoic2FsZWhzQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzQwODI4Nzk4LCJleHAiOjE3NDA4MzIzOTh9.AqYghaYry4sN4Jau4tBnSQlx_OYdUpc6NSoR4eSl7Jk",
+    "__v": 0
+  },
+  {
+    "_id": "67c2f92f0b7e12dea0f69af6",
+    "firstName": "Ali",
+    "lastName": "Amer",
+    "email": "alia@gmail.com",
+    "password": "$2b$10$T3.xpkoACewbUFz5UkpOFOvCEpArGTXBdrJXyzMGm2VHB6/x.L6By",
+    "role": "ADMIN",
+    "avatar": "uploads/profile.png",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzJmOTJmMGI3ZTEyZGVhMGY2OWFmNiIsImVtYWlsIjoiYWxpYUBnbWFpbC5jb24iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDA4MzEwMjMsImV4cCI6MTc0MDgzNDYyM30.LCXnOYtAaynQvucBB3rRk0R5cOpN_p41stY5JbJFIds",
+    "__v": 0
+  },
+  {
+    "_id": "67c2fcc07d3486e004d81b43",
+    "firstName": "Amer",
+    "lastName": "Ali",
+    "email": "amera@gmail.com",
+    "password": "$2b$10$9LUo4Ou2U/n3iwQ6jMCYnOVDJz.c4QxwJ3lU5Xgqsmy5dAIFQrHry",
+    "role": "ADMIN",
+    "avatar": "uploads/profile.png",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzJmY2MwN2QzNDg2ZTAwNGQ4MWI0MyIsImVtYWlsIjoiYW1lcmFAZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzQwODMxOTM2LCJleHAiOjE3NDA4MzU1MzZ9.dvcnTsV11x1aBU026-MEaM7POUd9HYC7HiguaWEk19Y",
+    "__v": 0
+  },
+  {
+    "_id": "67c2fdcba4373838f1a533fd",
+    "firstName": "Asaad",
+    "lastName": "Ali",
+    "email": "asaada@gmail.com",
+    "password": "$2b$10$LhJZQgwGGzf5HCmuaw9EfuVzSam9LlLfdGdpMQ4Dxcd4K.hIlxHpe",
+    "role": "USER",
+    "avatar": "avatar-1740832202906-101742341.png",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzJmZGNiYTQzNzM4MzhmMWE1MzNmZCIsImVtYWlsIjoiYXNhYWRhQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzQwODMyMjAzLCJleHAiOjE3NDA4MzU4MDN9.zg4zxxsUVY3nOS6kpxjA3DOujP89bNjqyGXTVGEn8V8",
+    "__v": 0
+  },
+  {
+    "_id": "67cb07a89450d2ec08cbc03e",
+    "firstName": "Omar",
+    "lastName": "Jarbou",
+    "email": "omarjarbou2019@gmail.com",
+    "password": "$2b$10$EpDOvY3r7fl5u4HBgBZYcOD18sqYLswYC8XB5JLhxNWbnGo6wJLnu",
+    "phone": "0568406041",
+    "address": "Nablus - Askar Camp",
+    "role": "ADMIN",
+    "avatar": "avatar-1741359016345-982595080.png",
+    "createdAt": "2025-03-07T14:50:16.424Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Y2IwN2E4OTQ1MGQyZWMwOGNiYzAzZSIsImVtYWlsIjoib21hcmphcmJvdTIwMTlAZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzQxMzU5MDE2LCJleHAiOjE3NDEzNjI2MTZ9.NjYg3JyC88RdN-2_eVLjb4GzJ0jj5JWNHlfw4nagOYs",
+    "__v": 0
+  },
+  {
+    "_id": "67cc71f8f9b83b2e03387450",
+    "firstName": "Amer",
+    "lastName": "Jarbou",
+    "email": "amerj@gmail.com",
+    "password": "$2b$10$sjJtfay26U4ozGZVNO8tdu7f8mtHsfcbA2EWGtoB3Bi/XSo09VLA2",
+    "phone": "0593674631",
+    "address": "Nablus - Askar Camp",
+    "role": "ORPHANAGE ADMIN",
+    "avatar": null,
+    "createdAt": "2025-03-08T16:36:08.570Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Y2M3MWY4ZjliODNiMmUwMzM4NzQ1MCIsImVtYWlsIjoiYW1lcmpAZ21haWwuY29tIiwicm9sZSI6Ik9SUEhBTkFHRSBBRE1JTiIsImlhdCI6MTc0MTQ1MTc2OCwiZXhwIjoxNzQxNDU1MzY4fQ.vhldcpzPjOS8WU7DIFYfmzMACuAdV3DlaA9d673PaY8",
+    "__v": 0
+  },
+  {
+    "_id": "67cde0d5d6d95832abb9b44b",
+    "firstName": "Ahmad",
+    "lastName": "Sami",
+    "email": "ahmads@gmail.com",
+    "password": "$2b$10$bvCAY7GHKKSuJf7aYVCHAuOwZwmm38LVjCZZU4QWg/jg6Tru.yAsi",
+    "phone": "0593674629",
+    "address": "Nablus",
+    "role": "ORPHANAGE ADMIN",
+    "avatar": null,
+    "createdAt": "2025-03-09T18:41:25.608Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Y2RlMGQ1ZDZkOTU4MzJhYmI5YjQ0YiIsImVtYWlsIjoiYWhtYWRzQGdtYWlsLmNvbSIsInJvbGUiOiJPUlBIQU5BR0UgQURNSU4iLCJpYXQiOjE3NDE1NDU2ODUsImV4cCI6MTc0MTU0OTI4NX0.8phcFhzROB4zOXU-CK66C84sBcWoULR9fUgdcLibGfQ",
+    "__v": 0
+  },
+  {
+    "_id": "67d9c021b51e86c3dff70b4e",
+    "firstName": "Sami",
+    "lastName": "Hadi",
+    "email": "samih@gmail.com",
+    "password": "$2b$10$lQGFppL9kf0GoT1L.9Y.hOosdkCnNhoZyZWnkVSLxYjr3yOzYcfte",
+    "phone": "0593674936",
+    "address": "Nablus - Rafidia",
+    "role": "SPONSOR",
+    "avatar": null,
+    "createdAt": "2025-03-18T18:49:05.406Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZDljMDIxYjUxZTg2YzNkZmY3MGI0ZSIsImVtYWlsIjoic2FtaWhAZ21haWwuY29tIiwicm9sZSI6IlNQT05TT1IiLCJpYXQiOjE3NDIzMjM3NDUsImV4cCI6MTc0MjMyNzM0NX0.cVVvcJEhMOVBK7xi1q828OMcmGkavroCrPnw8RTdlnY",
+    "__v": 0,
+    "stripeCustomerId": "cus_Ry1GJ56Uey6Unt"
+  },
+  {
+    "_id": "67debdd4da50638f32e4a3b2",
+    "firstName": "Saeed",
+    "lastName": "Hadi",
+    "email": "saeedh@gmail.com",
+    "password": "$2b$10$r5xZsrmZjWDGdyUQlaBjeu5yR2wIPfH4mL4tiaYd9EHxnNev48OlK",
+    "phone": "0562597476",
+    "address": "Nablus - Rafidia",
+    "role": "SPONSOR",
+    "avatar": null,
+    "createdAt": "2025-03-22T13:40:36.510Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZGViZGQ0ZGE1MDYzOGYzMmU0YTNiMiIsImVtYWlsIjoic2FlZWRoQGdtYWlsLmNvbSIsInJvbGUiOiJTUE9OU09SIiwiaWF0IjoxNzQyNjUwODM2LCJleHAiOjE3NDI2NTQ0MzZ9.PjDgLLnR2OPVkYyhvpUDFsZT5PupHlFs4EOXkMb2Uf8",
+    "__v": 0,
+    "stripeCustomerId": "cus_RzRE9w7t9V09Zd"
+  },
+  {
+    "_id": "67e1a6c18938b48c9f183e4a",
+    "firstName": "Ali",
+    "lastName": "Hadi",
+    "email": "alih@gmail.com",
+    "password": "$2b$10$lRkbfVawUBirs4NhBhDpiuIYqzB6zJYLIFEFL8/g/toTVv3LPvBiO",
+    "phone": "0564393782",
+    "address": "Nablus - Rafidia",
+    "role": "SPONSOR",
+    "avatar": null,
+    "createdAt": "2025-03-24T18:38:57.581Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTFhNmMxODkzOGI0OGM5ZjE4M2U0YSIsImVtYWlsIjoiYWxpaEBnbWFpbC5jb20iLCJyb2xlIjoiU1BPTlNPUiIsImlhdCI6MTc0Mjg0MTUzNywiZXhwIjoxNzQyODQ1MTM3fQ.7nLuvGskm8qIs3B-kPDmoM_koRVfdhi7Qv0wf5QuRvU",
+    "__v": 0,
+    "stripeCustomerId": "cus_S0GUInc1Ma1gS3"
+  },
+  {
+    "_id": "6819050ebe87b97a0484f7af",
+    "firstName": "Waleed",
+    "lastName": "Hadi",
+    "email": "waleedh@gmail.com",
+    "password": "$2b$10$Gvug9BbwCMKq2/tfLrMYUuFExVI1a4iikQXlffk0yf8NYJ/SSZDaK",
+    "phone": "0563956738",
+    "address": "Nablus - Rafidia",
+    "role": "SPONSOR",
+    "avatar": null,
+    "createdAt": "2025-05-05T18:35:58.566Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTkwNTBlYmU4N2I5N2EwNDg0ZjdhZiIsImVtYWlsIjoid2FsZWVkaEBnbWFpbC5jb20iLCJyb2xlIjoiU1BPTlNPUiIsImlhdCI6MTc0NjQ3MDE1OCwiZXhwIjoxNzQ2NDczNzU4fQ.zO-qg4DlZJaROtpSu7oIi-yraqB0tGEx5un9wH9pvpo",
+    "__v": 0,
+    "stripeCustomerId": "cus_SFzsd0bmi646ek"
+  },
+  {
+    "_id": "6819098cbe87b97a0484f7bb",
+    "firstName": "Waleed",
+    "lastName": "Amer",
+    "email": "waleeda@gmail.com",
+    "password": "$2b$10$SO2jgwk6W9w.EjFj6L//lughH0XKNAPnNAbeppYA.MXe46Q.91I9S",
+    "phone": "0593574653",
+    "address": "Nablus - Rafidia",
+    "role": "SPONSOR",
+    "avatar": null,
+    "createdAt": "2025-05-05T18:55:08.486Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTkwOThjYmU4N2I5N2EwNDg0ZjdiYiIsImVtYWlsIjoid2FsZWVkYUBnbWFpbC5jb20iLCJyb2xlIjoiU1BPTlNPUiIsImlhdCI6MTc0NjQ3MTMwOCwiZXhwIjoxNzQ2NDc0OTA4fQ.QuWIn8DpcZB96wOgPUTcIzG818qxWkW7fE26HwtmhIU",
+    "__v": 0,
+    "stripeCustomerId": "cus_SG0BLo6gOeTOAP"
+  },
+  {
+    "_id": "681f1367092f1d6a881791ee",
+    "firstName": "Wafa",
+    "lastName": "khaled",
+    "email": "wafa@gmail.com",
+    "password": "$2b$10$wqUQ.rxX5duIFd6Uc5Ou6O4lidz/991r0zumeQkwUBgVG1k/cvYSy",
+    "phone": "0593613797",
+    "address": "Nablus - Tell",
+    "role": "DONOR",
+    "avatar": null,
+    "createdAt": "2025-05-10T08:50:47.413Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWYxMzY3MDkyZjFkNmE4ODE3OTFlZSIsImVtYWlsIjoid2FmYUBnbWFpbC5jb20iLCJyb2xlIjoiRE9OT1IiLCJpYXQiOjE3NDY4NjcwNDcsImV4cCI6MTc0Njg3MDY0N30.4eqIGN1gZaPku2wrjKDpkA3qS9e5Ux8sLNfY4ZnIQpc",
+    "__v": 0,
+    "stripeCustomerId": "cus_SHjru5D772AB0W"
+  },
+  {
+    "_id": "681eb9b96d9e41419769f185",
+    "firstName": "aseel",
+    "lastName": "hag",
+    "email": "aseel@gmail.com",
+    "password": "$2b$10$3w5z/pkRIZIGqSvYoZaBkOPKNzKytPB/Yl.1bLniZVe/X7sf3qVwO",
+    "phone": "0593574478",
+    "address": "Nablus - Rafidia",
+    "role": "VOLUNTEER",
+    "avatar": null,
+    "createdAt": "2025-05-10T02:28:09.517Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWViOWI5NmQ5ZTQxNDE5NzY5ZjE4NSIsImVtYWlsIjoiYXNlZWxAZ21haWwuY29tIiwicm9sZSI6IlZPTFVOVEVFUiIsImlhdCI6MTc0Njg0NDA4OSwiZXhwIjoxNzQ2ODQ3Njg5fQ.Q6UFEp8cyOJR2BWloN6RMAsPuzRDbLBrAzjHtEcuRwo",
+    "__v": 0
+  },
+  {
+    "_id": "6820435b7318459f4f1a6d86",
+    "firstName": "Shatha",
+    "lastName": "khaled",
+    "email": "shatha@gmail.com",
+    "password": "$2b$10$.gcfN5dCM3kmeQVKRzPoCeXBVccZp/IMMspda5yyKfDmSdjtn56i2",
+    "phone": "0593613779",
+    "address": "Nablus - Tell",
+    "role": "DONOR",
+    "avatar": null,
+    "createdAt": "2025-05-11T06:27:39.609Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjA0MzViNzMxODQ1OWY0ZjFhNmQ4NiIsImVtYWlsIjoic2hhdGhhQGdtYWlsLmNvbSIsInJvbGUiOiJET05PUiIsImlhdCI6MTc0Njk0NDg1OSwiZXhwIjoxNzQ2OTQ4NDU5fQ.8UakbCi8UOiuuLxn5xqkD-KBkqCpk0qq-voKxNVtuXs",
+    "__v": 0
+  },
+  {
+    "_id": "68244837b552c2d0f6477e99",
+    "firstName": "tala",
+    "lastName": "hag",
+    "email": "tala@gmail.com",
+    "password": "$2b$10$8aiAD6Qc192Bd/K89CwN2Og4lfp4S45HD9JSL/KX4Xv/1phwcsPhy",
+    "phone": "0593574777",
+    "address": "Nablus - Rafidia",
+    "role": "ORPHANAGE ADMIN",
+    "avatar": null,
+    "createdAt": "2025-05-14T07:37:27.671Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjQ0ODM3YjU1MmMyZDBmNjQ3N2U5OSIsImVtYWlsIjoidGFsYUBnbWFpbC5jb20iLCJyb2xlIjoiT1JQSEFOQUdFIEFETUlOIiwiaWF0IjoxNzQ3MjA4MjQ3LCJleHAiOjE3NDcyMTE4NDd9.C6QeTFAEWyvW-TV04dZxHSE_cugXMuSNV1yT1aZJcTo",
+    "__v": 0
+  },
+  {
+    "_id": "682591b4b001e725c37a10e9",
+    "firstName": "Ahmad",
+    "lastName": "khaled",
+    "email": "ahmad@gmail.com",
+    "password": "$2b$10$jgHqIhEUIe1opBOyhphTau5pgS7a5YJ05a3n9Cn4jJNUbam7tiRcq",
+    "phone": "0593613456",
+    "address": "Nablus - Sarra",
+    "role": "DRIVER",
+    "avatar": null,
+    "createdAt": "2025-05-15T07:03:16.107Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjU5MWI0YjAwMWU3MjVjMzdhMTBlOSIsImVtYWlsIjoiYWhtYWRAZ21haWwuY29tIiwicm9sZSI6IkRSSVZFUiIsImlhdCI6MTc0NzI5MjU5NiwiZXhwIjoxNzQ3Mjk2MTk2fQ.ly0Ma8_wYRCyc0QMpQvUK7Sd0NdeMXqR95LwluHDlno",
+    "__v": 0,
+    "driverStatus": "AVAILABLE"
+  },
+  {
+    "_id": "6825a87dfad872f91db659e1",
+    "firstName": "Wafa",
+    "lastName": "Namroti",
+    "email": "w.namroti@gmail.com",
+    "password": "$2b$10$fWqjTdRd4ALnXmRmjOjI.eBvBMVvPwRWWwS7zHWPlQFmpI.EbGvKS",
+    "phone": "0594692562",
+    "address": "Nablus - Tel",
+    "role": "DONOR",
+    "avatar": null,
+    "createdAt": "2025-05-15T08:40:29.547Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjVhODdkZmFkODcyZjkxZGI2NTllMSIsImVtYWlsIjoidy5uYW1yb3RpQGdtYWlsLmNvbSIsInJvbGUiOiJET05PUiIsImlhdCI6MTc0NzI5ODQyOSwiZXhwIjoxNzQ3MzAyMDI5fQ.AA64TXwzuvyqUCSwH-x2AEQeIHKOTntbL67H0PQgnTg",
+    "__v": 0,
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        32.3242484,
+        35.3690006
+      ]
+    }
+  },
+  {
+    "_id": "6825bb313a5902789bc18a1b",
+    "firstName": "sami",
+    "lastName": "Namroti",
+    "email": "sami@gmail.com",
+    "password": "$2b$10$0e.B5YH2spYzFE0TWFLr3uCmNTmDQ1ftPqxoq81HtKfSd1xU1YP7a",
+    "phone": "0594692456",
+    "address": "Nablus - Tel",
+    "role": "DRIVER",
+    "avatar": null,
+    "createdAt": "2025-05-15T10:00:17.747Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjViYjMxM2E1OTAyNzg5YmMxOGExYiIsImVtYWlsIjoic2FtaUBnbWFpbC5jb20iLCJyb2xlIjoiRFJJVkVSIiwiaWF0IjoxNzQ3MzAzMjE3LCJleHAiOjE3NDczMDY4MTd9._5ULIpAhWWIZBsLFadOePL5tnf-kTSVbVpV9WKCfTgo",
+    "__v": 0,
+    "driverStatus": "AVAILABLE"
+  },
+  {
+    "_id": "68298fb1711c13c6b3ac0ab9",
+    "firstName": "shahd",
+    "lastName": "khaled",
+    "email": "shahd@gmail.com",
+    "password": "$2b$10$41hC1g53pzCttAScrv1ibOafMYkDmKFbPtwzPtD7.gfgodQ2GT9PW",
+    "phone": "0594692123",
+    "address": "Nablus - Sarra",
+    "role": "SUPPORT PROGRAM ADMIN",
+    "driverStatus": "Available",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": null,
+    "createdAt": "2025-05-18T07:43:45.870Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mjk4ZmIxNzExYzEzYzZiM2FjMGFiOSIsImVtYWlsIjoic2hhaGRAZ21haWwuY29tIiwicm9sZSI6IlNVUFBPUlQgUFJPR1JBTSBBRE1JTiIsImlhdCI6MTc0NzU1NDIyNSwiZXhwIjoxNzQ3NTU3ODI1fQ.XSvJ_pG9RPCM4TYtFw1-xC_o53hGrwtD3_fxqleywKY",
+    "__v": 0
+  },
+  {
+    "_id": "682a468d98cba24c37a496c6",
+    "firstName": "Majed",
+    "lastName": "Khaled",
+    "email": "majedk@gmail.com",
+    "password": "$2b$10$tiaMNVedKVrwyarC1nelFu0XjsWD.a0oSg7uVN9dakLNUoFGNky0i",
+    "phone": "0593847156",
+    "address": "Tubas",
+    "role": "DONOR",
+    "driverStatus": "Available",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": "user-1747601037589-607535061.png",
+    "createdAt": "2025-05-18T20:43:57.687Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmE0NjhkOThjYmEyNGMzN2E0OTZjNiIsImVtYWlsIjoibWFqZWRrQGdtYWlsLmNvbSIsInJvbGUiOiJET05PUiIsImlhdCI6MTc0NzYwMTAzNywiZXhwIjoxNzQ3NjA0NjM3fQ.wPzIWHE_Gs19HnZFiWaQPh6GkJOB1NCZ-om6VDl2hQQ",
+    "__v": 0
+  },
+  {
+    "_id": "682ac4d584a05076496fd3f1",
+    "firstName": "sama",
+    "lastName": "khaled",
+    "email": "sama@gmail.com",
+    "password": "$2b$10$zk/m9jNJLpaSIAAVKb9jFecCYEsHA7SyYybUGJeu5zHnopu9qbN4K",
+    "phone": "0594456123",
+    "address": "Nablus - Sarra",
+    "role": "DONOR",
+    "driverStatus": "Available",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": null,
+    "createdAt": "2025-05-19T05:42:45.060Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmFjNGQ1ODRhMDUwNzY0OTZmZDNmMSIsImVtYWlsIjoic2FtYUBnbWFpbC5jb20iLCJyb2xlIjoiRE9OT1IiLCJpYXQiOjE3NDc2MzMzNjUsImV4cCI6MTc0NzYzNjk2NX0.5K2LpQb9ZAJLOoWqC3NH7j7rrIaH2REqcEYqEJztmoY",
+    "__v": 0
+  },
+  {
+    "_id": "682b203151b353aa36daa0e7",
+    "firstName": "lama",
+    "lastName": "hag",
+    "email": "lama@gmail.com",
+    "password": "$2b$10$pp2twSTZPD4QUb1C6z6Dt.wueQmtxaBN.eAEAT8AGTpkUK/5AyqSe",
+    "phone": "0597287678",
+    "address": "Nablus - Rafidia",
+    "role": "VOLUNTEER",
+    "avatar": null,
+    "createdAt": "2025-05-19T12:12:33.321Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmIyMDMxNTFiMzUzYWEzNmRhYTBlNyIsImVtYWlsIjoibGFtYUBnbWFpbC5jb20iLCJyb2xlIjoiVk9MVU5URUVSIiwiaWF0IjoxNzQ3NjU2NzUzLCJleHAiOjE3NDc2NjAzNTN9.1sKh2OQR8jgzV8K5NJL6nnjCGCdrYOe785If4Zgo6fs",
+    "__v": 0
+  },
+  {
+    "_id": "682b676cc6324b015807a971",
+    "firstName": "Ahmad",
+    "lastName": "Jarbou",
+    "email": "ahmadj@gmail.com",
+    "password": "$2b$10$7a0EBXI4TtAKfrbKLO7b2e8C8O0wyBOxpaNiiTJ3tJqeKxjsnxha.",
+    "phone": "0593686767",
+    "address": "Tubas",
+    "role": "ORPHANAGE ADMIN",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": null,
+    "createdAt": "2025-05-19T17:16:28.152Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmI2NzZjYzYzMjRiMDE1ODA3YTk3MSIsImVtYWlsIjoiYWhtYWRqQGdtYWlsLmNvbSIsInJvbGUiOiJPUlBIQU5BR0UgQURNSU4iLCJpYXQiOjE3NDc2NzQ5ODgsImV4cCI6MTc0NzY3ODU4OH0.3XT9mez36GgI6FZ9aeSQhfTwysuXP0TpPIziOhU_5Us",
+    "__v": 0
+  },
+  {
+    "_id": "682c1144e301bf5a357e37c3",
+    "firstName": "Hala",
+    "lastName": "Maree",
+    "email": "hala@gmail.com",
+    "password": "$2b$10$DEoxGFGzymbaWCtwW16BuOAkEcQUUUDIhzw3ZqsxxdXwaTyYJ6Eyu",
+    "phone": "0594456456",
+    "address": "Nablus - Rafidia",
+    "role": "SUPPORT PROGRAM ADMIN",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": null,
+    "createdAt": "2025-05-20T05:21:08.624Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmMxMTQ0ZTMwMWJmNWEzNTdlMzdjMyIsImVtYWlsIjoiaGFsYUBnbWFpbC5jb20iLCJyb2xlIjoiU1VQUE9SVCBQUk9HUkFNIEFETUlOIiwiaWF0IjoxNzQ3NzE4NDY4LCJleHAiOjE3NDc3MjIwNjh9.G60sOzvF1N-OAtB32X0lUv5yyBl8726tBRPWz9uBWE4",
+    "__v": 0
+  },
+  {
+    "_id": "682c4c5e7d08303103f0646e",
+    "firstName": "Ahmad",
+    "lastName": "Khudairi",
+    "email": "ahmadk@gmail.com",
+    "password": "$2b$10$OIoQQFbNUwG6qSjIxIm1LuXpkddVfVrZFSQoq.2tAxHYzDfQ7KQLm",
+    "phone": "0593858457",
+    "address": "Tubas",
+    "role": "SPONSOR",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": "user-1747733598175-333091853.png",
+    "createdAt": "2025-05-20T09:33:18.477Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmM0YzVlN2QwODMwMzEwM2YwNjQ2ZSIsImVtYWlsIjoiYWhtYWRrQGdtYWlsLmNvbSIsInJvbGUiOiJTUE9OU09SIiwiaWF0IjoxNzQ3NzMzNTk4LCJleHAiOjE3NDc3MzcxOTh9.pF2N0RofjS4ih1gb8LD404nG47N1MkWzDZjm5erb7ho",
+    "__v": 0,
+    "stripeCustomerId": "cus_SLTbknc2yPy3oM"
+  },
+  {
+    "_id": "682c89f3d0cc0c32c19ea6e4",
+    "firstName": "Yazan",
+    "lastName": "Khudairi",
+    "email": "yazank@gmail.com",
+    "password": "$2b$10$qV6HtpXjaHbytL4XQlI7vONpbVPzH6gbxjzW8LOfvyF4voXCZCO.m",
+    "phone": "0594444444",
+    "address": "Tubas",
+    "role": "DONOR",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": "user-1747842684600-980098377.png",
+    "createdAt": "2025-05-20T13:56:03.175Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmM4OWYzZDBjYzBjMzJjMTllYTZlNCIsImVtYWlsIjoieWF6YW5rQGdtYWlsLmNvbSIsInJvbGUiOiJET05PUiIsImlhdCI6MTc0Nzg0MjY4NCwiZXhwIjoxNzQ3ODQ2Mjg0fQ.ojzOl69gmu151M43B05FRLpYpidA14WzpzJA83fhyEg",
+    "__v": 0,
+    "stripeCustomerId": "cus_SLXk6Zg2AitZ9R"
+  },
+  {
+    "_id": "682cb509e7612487ea952307",
+    "firstName": "Lama",
+    "lastName": "Hag",
+    "email": "Lamahag6@gmail.com",
+    "password": "$2b$10$noaL8wKw/HpjyYOuUqFXqeT.04RaCCNAZB5JS9./SlbhH2S8Na6aS",
+    "phone": "0593333444",
+    "address": "Ramallah",
+    "role": "DRIVER",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": "user-1747760392935-335635834.png",
+    "createdAt": "2025-05-20T16:59:53.070Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmNiNTA5ZTc2MTI0ODdlYTk1MjMwNyIsImVtYWlsIjoiTGFtYWhhZzZAZ21haWwuY29tIiwicm9sZSI6IkRSSVZFUiIsImlhdCI6MTc0Nzc2MDM5MywiZXhwIjoxNzQ3NzYzOTkzfQ.e-_9SJHO6RUawEfUJsK11wnPcNY-kvg8c6PRNKLFUTM",
+    "__v": 0
+  },
+  {
+    "_id": "682dd8c32158f6c629d93c56",
+    "firstName": "Omar",
+    "lastName": "Jarbou",
+    "email": "omarj.formal@gmail.com",
+    "password": "$2b$10$PZ98wfoXKbUyb/MY4hbWOe.ihU6NJdYJUTqYWe3k/BH2wrmnN5.IC",
+    "phone": "0592223334",
+    "address": "Ramallah",
+    "role": "DRIVER",
+    "driverStatus": "BUSY",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        32,
+        35.3
+      ]
+    },
+    "avatar": "user-1747835075226-407460016.png",
+    "createdAt": "2025-05-21T13:44:35.937Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmRkOGMzMjE1OGY2YzYyOWQ5M2M1NiIsImVtYWlsIjoiczEyMTEyMDY3QHN0dS5uYWphaC5lZHUiLCJyb2xlIjoiRFJJVkVSIiwiaWF0IjoxNzQ3ODM1MDc1LCJleHAiOjE3NDc4Mzg2NzV9.v94s2fenhgkytyWR5MCwhvLREi2q3-HC2G2QXrObres",
+    "__v": 0
+  },
+  {
+    "_id": "682df32cba342d0a17c612af",
+    "firstName": "Laith",
+    "lastName": "Khudairy",
+    "email": "laithk@gmail.com",
+    "password": "$2b$10$t1vp.CqJd9HJLU1rWzPe1OJSpTDfIrnLdz50LWWgjClgHwyoA72y2",
+    "phone": "0592342345",
+    "address": "Ramallah",
+    "role": "DONOR",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": "user-1747841836703-22930777.png",
+    "createdAt": "2025-05-21T15:37:16.823Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmRmMzJjYmEzNDJkMGExN2M2MTJhZiIsImVtYWlsIjoibGFpdGhrQGdtYWlsLmNvbSIsInJvbGUiOiJET05PUiIsImlhdCI6MTc0Nzg0MTgzNiwiZXhwIjoxNzQ3ODQ1NDM2fQ.l5joO_9YqF2Wjpmc1oDW8-wFMbWfouEIUQ5OAJ_CEHQ",
+    "__v": 0
+  },
+  {
+    "_id": "682df442ba342d0a17c612b5",
+    "firstName": "Hamzeh",
+    "lastName": "Jarbou",
+    "email": "hamzehj@gmail.com",
+    "password": "$2b$10$7W2q42teUaIN0fY00AFDMeg4JOcnyDBXsB8rpZg79fY/wbsDlOwvy",
+    "phone": "0592345234",
+    "address": "Tubas",
+    "role": "ADMIN",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": "user-1747842114874-912317837.png",
+    "createdAt": "2025-05-21T15:41:54.973Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmRmNDQyYmEzNDJkMGExN2M2MTJiNSIsImVtYWlsIjoiaGFtemVoakBnbWFpbC5jb20iLCJyb2xlIjoiVEVNUE9SQVJZIiwiaWF0IjoxNzQ3ODQyMTE0LCJleHAiOjE3NDc4NDU3MTR9.gB1nqGeI-qwWsqWWxHd3EUAqG2nRY3kOXvStcOKADfU",
+    "__v": 0
+  },
+  {
+    "_id": "682dfc92ba342d0a17c612d8",
+    "firstName": "Hamzeh",
+    "lastName": "Khdairat",
+    "email": "hamzehk@gmail.com",
+    "password": "$2b$10$Sbpn0sTA/0LOL.kAIpEmAO01v882Pz0RogwfI3BOFOsMBs.49lEMK",
+    "phone": "0599478274",
+    "address": "Amman",
+    "role": "ORPHANAGE ADMIN",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": "user-1747844242213-945960860.png",
+    "createdAt": "2025-05-21T16:17:22.312Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmRmYzkyYmEzNDJkMGExN2M2MTJkOCIsImVtYWlsIjoiaGFtemVoa0BnbWFpbC5jb20iLCJyb2xlIjoiT1JQSEFOQUdFIEFETUlOIiwiaWF0IjoxNzQ3ODQ0MjQyLCJleHAiOjE3NDc4NDc4NDJ9.99IwchEZxDm4j9MDlDiURgMkEIoYWYLucEF8g3M-sj0",
+    "__v": 0
+  },
+  {
+    "_id": "682e01a20748687d72fb5e82",
+    "firstName": "samer",
+    "lastName": "hag",
+    "email": "samer@gmail.com",
+    "password": "$2b$10$e5TEj66uCpqSDd47lU220OO4sT.gKfuVmgpmzQo70TNEM03p.vKFG",
+    "phone": "0597287444",
+    "address": "Nablus - Rafidia",
+    "role": "ADMIN",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": null,
+    "createdAt": "2025-05-21T16:38:58.858Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmUwMWEyMDc0ODY4N2Q3MmZiNWU4MiIsImVtYWlsIjoic2FtZXJAZ21haWwuY29tIiwicm9sZSI6IlRFTVBPUkFSWSIsImlhdCI6MTc0Nzg0NTUzOCwiZXhwIjoxNzQ3ODQ5MTM4fQ.tf9bvMEerfgPUk95LTwZH0Z_Kt6DuOPMxC20xxgKvMM",
+    "__v": 0
+  },
+  {
+    "_id": "682e1e53b7bd42c55e59960c",
+    "firstName": "Zaid",
+    "lastName": "Khdairat",
+    "email": "zaidk@gmail.com",
+    "password": "$2b$10$42qAfoOFqQR.jKgfpLuv9uD/pE8G7y5kWGhRN..LGJD978oWBDKVe",
+    "phone": "0599415432",
+    "address": "Amman",
+    "role": "SPONSOR",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": "user-1747852882021-250269653.png",
+    "createdAt": "2025-05-21T18:41:23.216Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmUxZTUzYjdiZDQyYzU1ZTU5OTYwYyIsImVtYWlsIjoiemFpZGtAZ21haWwuY29tIiwicm9sZSI6IlNQT05TT1IiLCJpYXQiOjE3NDc4NTI4ODMsImV4cCI6MTc0Nzg1NjQ4M30.DVF_zl-slfnbbTbcYU1zID5ZuzMbQ18e0NJE5L4KBDg",
+    "__v": 0,
+    "stripeCustomerId": "cus_SLzeRFlw8ljsj8"
+  },
+  {
+    "_id": "682e54a3d4942a6063a0015b",
+    "firstName": "qais",
+    "lastName": "ahmad",
+    "email": "qais@gmail.com",
+    "password": "$2b$10$2mDt1wnKByvCvrZIUvClPucPSui1fvl07qrrzqTfV5djHVxpsw6qO",
+    "phone": "0597287448",
+    "address": "Nablus - Rafidia",
+    "role": "TEMPORARY",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": null,
+    "createdAt": "2025-05-21T22:33:07.439Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmU1NGEzZDQ5NDJhNjA2M2EwMDE1YiIsImVtYWlsIjoicWFpc0BnbWFpbC5jb20iLCJyb2xlIjoiVEVNUE9SQVJZIiwiaWF0IjoxNzQ3ODY2Nzg3LCJleHAiOjE3NDc4NzAzODd9.zKqwSCZRYpLzbQCefRHT20JKYLW2moHF1VzI3e-sAYU",
+    "__v": 0
+  },
+  {
+    "_id": "682e54ead4942a6063a0015e",
+    "firstName": "qusay",
+    "lastName": "ahmad",
+    "email": "qusai@gmail.com",
+    "password": "$2b$10$dvUxikYRa1vp1fJ2Cyel/uq4vDhXwHtlG0nOL8Oz.zM8bdLjB4Uie",
+    "phone": "0597287488",
+    "address": "Nablus - Rafidia",
+    "role": "VOLUNTEER",
+    "driverStatus": "AVAILABLE",
+    "driverCurrentLocation": {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0
+      ]
+    },
+    "avatar": null,
+    "createdAt": "2025-05-21T22:34:18.147Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmU1NGVhZDQ5NDJhNjA2M2EwMDE1ZSIsImVtYWlsIjoicXVzYWlAZ21haWwuY29tIiwicm9sZSI6IlZPTFVOVEVFUiIsImlhdCI6MTc0Nzg2Njg1OCwiZXhwIjoxNzQ3ODcwNDU4fQ.u5tB-zgk1QDQkNr5ZA52KCgEfbWkuJBH-h8uFNAEcN0",
+    "__v": 0
+  }
+]

@@ -176,7 +176,8 @@ const createDonationEducattionFinancial = asyncWrapper(async (req, res, next) =>
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
   }
 
-  // ✅ احسب الخصم والمبلغ الصافي
+  //  احسب الخصم والمبلغ الصافي
+  
   const { fee, net } = await calculateFees(amount);
 
   const donation = new Donation({
@@ -312,7 +313,6 @@ const createDonationMidicalFinancial = asyncWrapper(async (req, res, next) => {
     return next(appError.create("Missing required fields", 400, httpStatusText.FAIL));
   }
 
-  // ✅ احسب الخصم والمبلغ الصافي
   const { fee, net } = await calculateFees(amount);
 
   const donation = new Donation({

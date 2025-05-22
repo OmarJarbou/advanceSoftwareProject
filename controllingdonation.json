@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "682b589c5c33901dfbddd848",
+    "donation": "682b52d64ac8a0729e5b864a",
+    "orphanage": "67ccc69ad7fbcd19a9fc8ebc",
+    "controlledBy": "67cc71f8f9b83b2e03387450",
+    "usageSummary": "Books were distributed to children enrolled in the Learning Center and Al Amal School for Orphans.",
+    "orphansImpacted": [],
+    "photos": [
+      "http://localhost:5000/uploads/book1.png",
+      "http://localhost:5000/uploads/book2.png"
+    ],
+    "notes": "Distribution was supervised by the Admin.",
+    "controlDate": "2025-05-19T16:13:16.961Z",
+    "__v": 0
+  },
+  {
+    "_id": "682b604c5c33901dfbddd86e",
+    "donation": "682b52fd4ac8a0729e5b864f",
+    "orphanage": null,
+    "controlledBy": "67c2f92f0b7e12dea0f69af6",
+    "usageSummary": "The tools were controlled for the benefit of the association's clinic.",
+    "orphansImpacted": [],
+    "photos": [
+      "http://localhost:5000/uploads/medical.png",
+      "http://localhost:5000/uploads/medical1.png"
+    ],
+    "notes": "Distribution was supervised by the Admin.",
+    "controlDate": "2025-05-19T16:46:04.905Z",
+    "__v": 0
+  },
+  {
+    "_id": "682e38ba4155cac1b46112ec",
+    "donation": "682e2fe81093c94f9d278c4c",
+    "orphanage": "682df9a9ba342d0a17c612cc",
+    "controlledBy": "67c2f92f0b7e12dea0f69af6",
+    "usageSummary": "Books were distributed to children enrolled in the Learning Center and Al Amal School for Orphans.",
+    "orphansImpacted": [],
+    "photos": [
+      "http://localhost:5000/uploads/medical.png",
+      "http://localhost:5000/uploads/medical2.png"
+    ],
+    "notes": "Distribution was supervised by the Admin.",
+    "controlDate": "2025-05-21T20:34:02.242Z",
+    "__v": 0
+  }
+]

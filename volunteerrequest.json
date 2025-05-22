@@ -1,0 +1,80 @@
+[
+  {
+    "_id": "682b1ec751b353aa36daa0d9",
+    "orphanage": "67cdf7502135feb39e5aaed8",
+    "description": "We need an DOCTOR to help orphans 2 times a week.",
+    "requiredSkills": "good, Patience, Communication",
+    "requiredServiceType": "Healthcare",
+    "status": "Open",
+    "applicationCount": 2,
+    "maxVolunteers": 3,
+    "acceptedCount": 0,
+    "createdAt": "2025-05-19T12:06:31.472Z",
+    "__v": 0
+  },
+  {
+    "_id": "682b1f3151b353aa36daa0dc",
+    "orphanage": "67cdf7502135feb39e5aaed8",
+    "description": "We need an Psychotherapist to help orphans 5 times a month.",
+    "requiredSkills": "good, Patience, Communication",
+    "requiredServiceType": "Mentoring",
+    "status": "Open",
+    "applicationCount": 1,
+    "maxVolunteers": 2,
+    "acceptedCount": 0,
+    "createdAt": "2025-05-19T12:08:17.439Z",
+    "__v": 0
+  },
+  {
+    "_id": "682cc119a6c362d64d626662",
+    "orphanage": "67cdf7502135feb39e5aaed8",
+    "description": "We need an arabic teacher to help orphans 3 times a month.",
+    "requiredSkills": "good, Patience, Communication",
+    "requiredServiceType": "Teaching",
+    "status": "Closed",
+    "applicationCount": 1,
+    "maxVolunteers": 1,
+    "acceptedCount": 1,
+    "createdAt": "2025-05-20T17:51:21.667Z",
+    "__v": 0
+  },
+  {
+    "_id": "682cc23ca6c362d64d62666e",
+    "orphanage": "67cdf7502135feb39e5aaed8",
+    "description": "We need an arabic teacher to help orphans 3 times a month.",
+    "requiredSkills": "good, Patience, Communication",
+    "requiredServiceType": "Teaching",
+    "status": "Open",
+    "applicationCount": 1,
+    "maxVolunteers": 2,
+    "acceptedCount": 1,
+    "createdAt": "2025-05-20T17:56:12.580Z",
+    "__v": 0
+  },
+  {
+    "_id": "682e5372d4942a6063a00132",
+    "orphanage": "67cdf7502135feb39e5aaed8",
+    "description": "We need an techno teacher to help orphans 1 times a week.",
+    "requiredSkills": "good,Communication",
+    "requiredServiceType": "Teaching",
+    "status": "Open",
+    "applicationCount": 1,
+    "maxVolunteers": 2,
+    "acceptedCount": 0,
+    "createdAt": "2025-05-21T22:28:02.186Z",
+    "__v": 0
+  },
+  {
+    "_id": "682e5389d4942a6063a00135",
+    "orphanage": "67cdf7502135feb39e5aaed8",
+    "description": "We need an religion teacher to help orphans 2 times a week.",
+    "requiredSkills": "good,Communication",
+    "requiredServiceType": "Teaching",
+    "status": "Open",
+    "applicationCount": 1,
+    "maxVolunteers": 2,
+    "acceptedCount": 1,
+    "createdAt": "2025-05-21T22:28:25.385Z",
+    "__v": 0
+  }
+]
