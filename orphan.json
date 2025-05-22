@@ -1,0 +1,67 @@
+[
+  {
+    "_id": "67d2a1f29610f4b768cd557e",
+    "name": "Ali",
+    "age": 6,
+    "gender": "Male",
+    "educationStatus": "Not yet enrolled",
+    "healthCondition": "Healthy",
+    "orphanage": "67ccc69ad7fbcd19a9fc8ebc",
+    "orphanageAdmin": "67cc71f8f9b83b2e03387450",
+    "sponsors": [],
+    "photos": null,
+    "createdAt": "2025-03-13T09:14:26.076Z",
+    "__v": 0
+  },
+  {
+    "_id": "681919e61482918135d937c0",
+    "name": "Samer",
+    "age": 8,
+    "gender": "Male",
+    "educationStatus": "Not yet enrolled",
+    "healthCondition": "Healthy",
+    "orphanage": "67cdf7502135feb39e5aaed8",
+    "orphanageAdmin": "67cde0d5d6d95832abb9b44b",
+    "sponsors": [
+      "6819098cbe87b97a0484f7bb"
+    ],
+    "photos": null,
+    "createdAt": "2025-05-05T20:04:54.057Z",
+    "__v": 0
+  },
+  {
+    "_id": "682a43b9b52c00c70745e139",
+    "name": "Ahmad",
+    "age": 9,
+    "gender": "Male",
+    "educationStatus": "Not yet enrolled",
+    "healthCondition": "Healthy",
+    "orphanage": "67cdf7502135feb39e5aaed8",
+    "orphanageAdmin": "67cde0d5d6d95832abb9b44b",
+    "sponsors": [],
+    "photos": [
+      "orphan-1747600313212-713463642.png"
+    ],
+    "createdAt": "2025-05-18T20:31:53.420Z",
+    "__v": 0
+  },
+  {
+    "_id": "682e138fb7bd42c55e5995e2",
+    "name": "Asaad",
+    "age": 9,
+    "gender": "Male",
+    "educationStatus": "Enrolled",
+    "healthCondition": "Healthy",
+    "orphanage": "682df9a9ba342d0a17c612cc",
+    "orphanageAdmin": "682b676cc6324b015807a971",
+    "sponsors": [
+      "682e1e53b7bd42c55e59960c"
+    ],
+    "photos": [
+      "orphan-1747850127145-87408297.png",
+      "orphan-1747850127145-871554474.png"
+    ],
+    "createdAt": "2025-05-21T17:55:27.351Z",
+    "__v": 0
+  }
+]

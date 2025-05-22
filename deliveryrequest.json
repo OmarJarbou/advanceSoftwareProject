@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "68261ab2854ba68eb1d2a235",
+    "donor": "681f1367092f1d6a881791ee",
+    "donation": "6825e7cc0e2a74a9c438c69a",
+    "orphanage": "67ccc69ad7fbcd19a9fc8ebc",
+    "status": "CLAIMED",
+    "location": {
+      "coordinates": [
+        32.217709,
+        35.300289
+      ],
+      "type": "Point"
+    },
+    "driver": "6825a87dfad872f91db659e1",
+    "createdAt": "2025-05-15T16:47:57.421Z",
+    "__v": 0,
+    "destination": {
+      "coordinates": [
+        "31.924249",
+        "35.1690231"
+      ],
+      "type": "Point"
+    }
+  },
+  {
+    "_id": "682de16e9280be62cd6d0ccd",
+    "donor": "682c89f3d0cc0c32c19ea6e4",
+    "donation": "682dc4b72158f6c629d93bf4",
+    "orphanage": "67cdf7502135feb39e5aaed8",
+    "status": "DELIVERED",
+    "location": {
+      "coordinates": [
+        32.917709,
+        35.300289
+      ],
+      "type": "Point"
+    },
+    "destination": {
+      "coordinates": [
+        31.917709,
+        35.300289
+      ],
+      "type": "Point"
+    },
+    "driver": "682dd8c32158f6c629d93c56",
+    "createdAt": "2025-05-21T14:21:39.575Z",
+    "__v": 0
+  },
+  {
+    "_id": "682eec6891938fd519d45eca",
+    "donor": "681f1367092f1d6a881791ee",
+    "donation": "682e370c4155cac1b46112c4",
+    "orphanage": null,
+    "status": "CLAIMED",
+    "location": {
+      "coordinates": [
+        32.817709,
+        35.300289
+      ],
+      "type": "Point"
+    },
+    "destination": {
+      "coordinates": [
+        31.917709,
+        35.300289
+      ],
+      "type": "Point"
+    },
+    "driver": "682dd8c32158f6c629d93c56",
+    "createdAt": "2025-05-22T09:20:49.249Z",
+    "__v": 0
+  }
+]

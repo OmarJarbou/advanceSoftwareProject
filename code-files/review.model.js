@@ -5,6 +5,7 @@ const ReviewSchema = new mongoose.Schema({
   orphanage: { type: mongoose.Schema.Types.ObjectId, ref: 'Orphanage', required: true },
   rating: { type: Number, required: true, min: 1, max: 5 },
   comment: { type: String, default: '' },
+   reply: { type: String, default: null },
   createdAt: { type: Date, default: Date.now }
 });
 

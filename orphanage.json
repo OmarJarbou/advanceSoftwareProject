@@ -1,0 +1,89 @@
+[
+  {
+    "_id": "67ccc69ad7fbcd19a9fc8ebc",
+    "name": "Hope Shelter",
+    "location": "Gaza City, Palestine",
+    "description": "A safe home for orphaned children, providing education and care.",
+    "contact": {
+      "phone": "+970599123456",
+      "email": "admin@hopeshelter.org"
+    },
+    "admin": "67cc71f8f9b83b2e03387450",
+    "orphans": [
+      "67d2a1f29610f4b768cd557e",
+      "682b803f5509987ec3b5dcff"
+    ],
+    "status": "APPROVED",
+    "verified": true,
+    "createdAt": "2025-03-08T22:37:14.858Z",
+    "__v": 9,
+    "donations": [
+      "682b52d64ac8a0729e5b864a",
+      "682dfbe3dd6acbcb7c371f74",
+      "682e27cf46feb4292fca8ca0",
+      "682e27df46feb4292fca8ca4",
+      "682e2bca46feb4292fca8ca8",
+      "682e2c4846feb4292fca8cae"
+    ],
+    "drivers": [
+      "6825bb313a5902789bc18a1b"
+    ],
+    "supportPrograms": [
+      "682e393a4155cac1b4611302"
+    ]
+  },
+  {
+    "_id": "67cdf7502135feb39e5aaed8",
+    "name": "Gaza Shelter",
+    "location": "Gaza City, Palestine",
+    "description": "A safe home for orphaned children",
+    "contact": {
+      "phone": "+970599135790",
+      "email": "admin@gazashelter.org"
+    },
+    "admin": "67cde0d5d6d95832abb9b44b",
+    "orphans": [
+      "67d2e94d063e4c8cfa08660e",
+      "681919e61482918135d937c0",
+      "682a0fdc0b2437b6ef76588f",
+      "682a43b9b52c00c70745e139"
+    ],
+    "status": "APPROVED",
+    "verified": false,
+    "createdAt": "2025-03-09T20:17:20.337Z",
+    "__v": 9,
+    "donations": [
+      "682c87a9d0cc0c32c19ea6dc",
+      "682c8abfd0cc0c32c19ea6ed",
+      "682c8b26d0cc0c32c19ea6f8",
+      "682ca209519a86df7f19d15e",
+      "682dc4b72158f6c629d93bf4",
+      "682e36fa4155cac1b46112b9"
+    ]
+  },
+  {
+    "_id": "682df9a9ba342d0a17c612cc",
+    "name": "GazaOrphans Shelter",
+    "location": "Gaza City, Palestine",
+    "description": "A safe home for orphaned children",
+    "contact": {
+      "phone": "+970599135790",
+      "email": "admin@gazaorphans.org"
+    },
+    "admin": "682b676cc6324b015807a971",
+    "orphans": [
+      "682e138fb7bd42c55e5995e2"
+    ],
+    "status": "APPROVED",
+    "verified": true,
+    "donations": [
+      "682e2fe81093c94f9d278c4c",
+      "682e5ca29249a34d464ff318",
+      "682e5d069249a34d464ff31c",
+      "682ee7040e7f5ac49a90f599"
+    ],
+    "supportPrograms": [],
+    "createdAt": "2025-05-21T16:04:57.788Z",
+    "__v": 3
+  }
+]
